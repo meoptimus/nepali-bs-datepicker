@@ -1,0 +1,217 @@
+/*!
+ * Nepali Datepicker v2.0.0 — dark theme
+ * Licensed under the Apache License v2.0
+ */
+/* Dark — for dark interfaces; blue accent, low-glare surfaces. */
+.npdatepicker-theme-dark {
+	--npdp-bg: #1e2230;
+	--npdp-text: #e7e9ef;
+	--npdp-muted: #6c7389;
+	--npdp-disabled: #4a5063;
+	--npdp-border: #31374a;
+	--npdp-radius: 10px;
+	--npdp-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+	--npdp-padding: 8px;
+
+	--npdp-head-bg: transparent;
+	--npdp-head-text: #ffffff;
+	--npdp-head-hover: #2b3144;
+	--npdp-dow-text: #8a91a8;
+
+	--npdp-cell-radius: 8px;
+	--npdp-cell-size: 32px;
+	--npdp-hover-bg: #2b3144;
+	--npdp-accent: #4f8cff;
+	--npdp-accent-text: #0b1220;
+	--npdp-today-bg: #2d3a5c;
+	--npdp-today-text: #9fc0ff;
+	--npdp-highlight-bg: #262b3b;
+	--npdp-highlight-text: #c3c8d6;
+	--npdp-range-bg: #26365c;
+	--npdp-range-text: #dbe6ff;
+	--npdp-link: #7aa7ff;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark {
+	background: var(--npdp-bg);
+	color: var(--npdp-text);
+	border: 1px solid var(--npdp-border);
+	border-radius: var(--npdp-radius);
+	box-shadow: var(--npdp-shadow);
+	font-family: var(--npdp-font, inherit);
+	padding: var(--npdp-padding);
+}
+
+/* Upstream fixes inline pickers at 220px; themed cells need room to grow */
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.datepicker-inline {
+	display: inline-block;
+	width: auto;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+/* Round the header corners to match the picker; the dropdown arrow lives on
+ * the picker itself, so clipping the table does not hide it */
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark > div > table {
+	border-radius: calc(var(--npdp-radius) - 1px);
+	overflow: hidden;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr th {
+	border-radius: var(--npdp-cell-radius);
+	border: none;
+	padding: var(--npdp-cell-padding, 4px 5px);
+	min-width: var(--npdp-cell-size, 30px);
+	height: var(--npdp-cell-size, 30px);
+}
+
+/* Header cells carry the header colour, so there are no gaps or round blobs */
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th {
+	background: var(--npdp-head-bg);
+	color: var(--npdp-head-text);
+	border-radius: 0;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.datepicker-switch {
+	font-weight: var(--npdp-title-weight, 600);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.dow {
+	color: var(--npdp-dow-text);
+	font-weight: 500;
+	font-size: 0.85em;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.prev:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.next:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.datepicker-switch:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tfoot tr th:hover {
+	background: var(--npdp-head-hover);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.prev.disabled,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table thead tr th.next.disabled {
+	visibility: hidden;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tfoot tr th {
+	color: var(--npdp-link);
+	background: transparent;
+	font-weight: 500;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.cw {
+	color: var(--npdp-muted);
+	font-size: 0.8em;
+	background: transparent;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.day,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span {
+	color: var(--npdp-text);
+	background: transparent;
+	text-shadow: none;
+	background-image: none;
+	border: none;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.old,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.new,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.old,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.new {
+	color: var(--npdp-muted);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.day:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.day.focused,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.focused {
+	background: var(--npdp-hover-bg);
+	color: var(--npdp-text);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.highlighted,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.highlighted:hover {
+	background: var(--npdp-highlight-bg);
+	color: var(--npdp-highlight-text);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.today,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.today:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.today.focused {
+	background: var(--npdp-today-bg);
+	color: var(--npdp-today-text);
+	font-weight: 600;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range.today,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range.highlighted {
+	background: var(--npdp-range-bg);
+	color: var(--npdp-range-text);
+	border-radius: 0;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.disabled,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.disabled:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.disabled,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.disabled:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.today.disabled,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.highlighted.disabled {
+	background: transparent;
+	color: var(--npdp-disabled);
+	cursor: default;
+	text-decoration: var(--npdp-disabled-decoration, none);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.active,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.active:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.active.today,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.active.highlighted,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.active.focused,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.selected,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.selected:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range-start,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range-end,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.active,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.active:hover,
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td span.active.focused {
+	background: var(--npdp-accent);
+	color: var(--npdp-accent-text);
+	border-color: var(--npdp-accent);
+	text-shadow: none;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range-start {
+	border-radius: var(--npdp-cell-radius) 0 0 var(--npdp-cell-radius);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range-end {
+	border-radius: 0 var(--npdp-cell-radius) var(--npdp-cell-radius) 0;
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark table tr td.range-start.range-end {
+	border-radius: var(--npdp-cell-radius);
+}
+
+/* Dropdown arrow: border triangle, then fill */
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.datepicker-dropdown.datepicker-orient-bottom:before {
+	border-bottom-color: var(--npdp-border);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.datepicker-dropdown.datepicker-orient-bottom:after {
+	border-bottom-color: var(--npdp-arrow-top, var(--npdp-bg));
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.datepicker-dropdown.datepicker-orient-top:before {
+	border-top-color: var(--npdp-border);
+}
+
+.datepicker.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.npdatepicker-theme-dark.datepicker-dropdown.datepicker-orient-top:after {
+	border-top-color: var(--npdp-bg);
+}

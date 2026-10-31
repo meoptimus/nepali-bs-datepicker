@@ -9,27 +9,48 @@ unchanged** — while every view (days, months, years, decades) is in Bikram Sam
 - Self-contained: one JavaScript file, only depends on jQuery (1.12 – 4.x)
 - Built-in BS ↔ AD conversion for BS 1970 – 2099, with an easy-to-update month table
 - Full `format` support (`d dd D DD m mm M MM yy yyyy`) for display and parsing
-- Nepali (Devanagari) and English locales, Devanagari digits in input and output
+- Nepali (Devanagari) and English locales; `unicodeDigits` option for १ २ ३ numerals
+- Four themes (material, nepal, minimal, dark) built on CSS custom properties
 - Date ranges, multiple dates, month/year pickers, disabled dates, keyboard navigation
 - Works in every timezone
 
 ## Install
 
-```bash
-npm install nepali-bs-datepicker
-```
-
-or copy `dist/js/nepali-datepicker.min.js` and a stylesheet from `dist/css/` into your project.
+### CDN
 
 ```html
-<link rel="stylesheet" href="dist/css/bootstrap-datepicker3.standalone.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css">
+<!-- optional themes -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css">
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="dist/js/nepali-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"></script>
 ```
 
-Use `bootstrap-datepicker3*.css` with Bootstrap 3+, `bootstrap-datepicker*.css` with Bootstrap 2, and the
-`.standalone` variants when Bootstrap itself is not on the page. They are the unmodified upstream 1.10.1
-stylesheets.
+The same paths work on unpkg (`https://unpkg.com/nepali-bs-datepicker@2.0.0/...`).
+
+### npm
+
+```bash
+npm install nepali-bs-datepicker jquery
+```
+
+### Download
+
+Copy `dist/js/nepali-datepicker.min.js` and a stylesheet from `dist/css/`. Use `bootstrap-datepicker3*.css` with
+Bootstrap 3+, `bootstrap-datepicker*.css` with Bootstrap 2, and the `.standalone` variants when Bootstrap itself is not
+on the page. They are the unmodified upstream 1.10.1 stylesheets.
+
+## Themes
+
+```js
+$('#dob').npdatepicker({ theme: 'nepal' });      // material | nepal | minimal | dark
+$('#dob').npdatepicker('setTheme', 'dark');
+```
+
+Load `dist/css/nepali-datepicker-themes.css` (all) or `dist/css/themes/<name>.css` after the base stylesheet. Themes
+are CSS custom properties, so `.npdatepicker-theme-nepal { --npdp-accent: #0b6e4f; }` re-colours one, and a new
+theme is a single file in `src/themes/`.
 
 ## Usage
 
@@ -62,7 +83,7 @@ Component and range markup are the same as bootstrap-datepicker:
 </div>
 ```
 
-Open `demo/index.html` (after `npm run build`) to try every mode.
+Open `docs/index.html` for live demos of every feature and `docs/documentation.html` for the full reference.
 
 ## Dates: BS strings in, AD `Date` objects out
 
@@ -85,8 +106,9 @@ supported. Differences and additions:
 |---|---|---|
 | `format` | `'yyyy-mm-dd'` | BS tokens: `d`, `dd` day; `D`, `DD` weekday; `m`, `mm` month number; `M`, `MM` month name; `yy`, `yyyy` year. A `{toDisplay, toValue}` object also works. |
 | `language` | `'np'` | `'np'` (alias `'ne'`) or `'en'`. Add your own in `$.fn.npdatepicker.dates`. |
-| `nativeDigits` | `false` | Write the input value with the locale's digits (Devanagari for `np`). The picker itself always shows locale digits. |
-| `pickerClass` | `''` | Extra class(es) for the picker element, eg `'npdatepicker-material'` for the bundled theme. |
+| `unicodeDigits` | `'picker'` | Devanagari numerals for `np`: `'picker'` = calendar only (input keeps `1 2 3`), `true` = calendar and input, `false` = never. |
+| `theme` | `''` | `'material'`, `'nepal'`, `'minimal'`, `'dark'` or your own; needs the themes stylesheet. |
+| `pickerClass` | `''` | Extra class(es) for the picker element. |
 | `autoclose` | `true` | (upstream: `false`) |
 | `todayHighlight` | `true` | (upstream: `false`) |
 | `startDate` / `endDate` | calendar limits | Clamped to the range the calendar data covers. |
@@ -96,7 +118,7 @@ supported. Differences and additions:
 ## Methods and events
 
 Same as bootstrap-datepicker (`show`, `hide`, `update`, `destroy`, `setDate`, `setDates`, `getDate`,
-`setStartDate`, `setDatesDisabled`, …) plus `getBsDate` and `getBsDates`. Call them as
+`setStartDate`, `setDatesDisabled`, …) plus `getBsDate`, `getBsDates`, `setTheme` and `setUnicodeDigits`. Call them as
 `$(el).npdatepicker('method', args…)`.
 
 Events (`show`, `hide`, `changeDate`, `clearDate`, `changeMonth`, `changeYear`, `changeDecade`,
@@ -160,8 +182,11 @@ This plugin registers `$.fn.npdatepicker`, stores its instance under `data('npda
 ```bash
 npm install
 npm test          # calendar validation + unit tests (jsdom)
-npm run build     # writes dist/
+npm run build     # writes dist/ (JS, minified JS, themes)
 ```
+
+For real-browser checks, serve the repo, open `docs/index.html` and run `test/browser-check.js` in the console;
+it drives every demo (72 checks).
 
 ## License
 

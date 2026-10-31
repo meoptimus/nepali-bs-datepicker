@@ -1,0 +1,36 @@
+/* Minimal — flat, monochrome, hairline borders; fits almost any design. */
+.npdatepicker-theme-minimal {
+	--npdp-bg: #ffffff;
+	--npdp-text: #111111;
+	--npdp-muted: #b3b3b3;
+	--npdp-disabled: #d9d9d9;
+	--npdp-disabled-decoration: line-through;
+	--npdp-border: #e5e5e5;
+	--npdp-radius: 2px;
+	--npdp-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	--npdp-padding: 6px;
+
+	--npdp-head-bg: transparent;
+	--npdp-head-text: #111111;
+	--npdp-head-hover: #f2f2f2;
+	--npdp-dow-text: #8c8c8c;
+	--npdp-title-weight: 500;
+
+	--npdp-cell-radius: 2px;
+	--npdp-cell-size: 30px;
+	--npdp-hover-bg: #f2f2f2;
+	--npdp-accent: #111111;
+	--npdp-accent-text: #ffffff;
+	--npdp-today-bg: transparent;
+	--npdp-today-text: #111111;
+	--npdp-highlight-bg: #fafafa;
+	--npdp-highlight-text: #111111;
+	--npdp-range-bg: #ededed;
+	--npdp-range-text: #111111;
+	--npdp-link: #111111;
+}
+
+/* Today is underlined instead of filled */
+.npdatepicker-theme-minimal.npdatepicker-theme-minimal.npdatepicker-theme-minimal.npdatepicker-theme-minimal.datepicker table tr td.today:not(.active) {
+	box-shadow: inset 0 -2px 0 #111111;
+}

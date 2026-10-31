@@ -465,6 +465,7 @@
 		this.picker.addClass('npdatepicker');
 		if (this.o.pickerClass)
 			this.picker.addClass(this.o.pickerClass);
+		this.setTheme(this.o.theme);
 
 		// Checking templates and inserting
 		if (this._check_template(this.o.templates.leftArrow)) {
@@ -820,7 +821,7 @@
 					}
 					format = format || this.o.format;
 					var date = this.dates.get(ix);
-					return DPGlobal.formatDate(date, format, this.o.language, this.o.nativeDigits);
+					return DPGlobal.formatDate(date, format, this.o.language, this.o.unicodeDigits === true);
 				}, this)
 			});
 		},
@@ -906,7 +907,7 @@
 		// Number in the locale's digits, for display inside the picker
 		_num: function(n){
 			var digits = dates[this.o.language].digits;
-			return digits ? toNativeDigits(n, digits) : String(n);
+			return digits && this.o.unicodeDigits !== false ? toNativeDigits(n, digits) : String(n);
 		},
 		_bsToLocal: function(year, month, day){
 			return this._utc_to_local(bsDate(year, month, day));
@@ -983,9 +984,9 @@
 				format = this.o.format;
 
 			var lang = this.o.language,
-				nativeDigits = this.o.nativeDigits;
+				unicodeDigits = this.o.unicodeDigits === true;
 			return $.map(this.dates, function(d){
-				return DPGlobal.formatDate(d, format, lang, nativeDigits);
+				return DPGlobal.formatDate(d, format, lang, unicodeDigits);
 			}).join(this.o.multidateSeparator);
 		},
 
@@ -1026,6 +1027,28 @@
 		setDatesDisabled: function(datesDisabled){
 			this._process_options({datesDisabled: datesDisabled});
 			this.update();
+			return this;
+		},
+
+		// Switches the `npdatepicker-theme-*` class; '' or null removes the theme
+		setTheme: function(theme){
+			this.picker.removeClass(function(i, cls){
+				return $.grep(cls.split(/\s+/), function(c){
+					return c.indexOf('npdatepicker-theme-') === 0;
+				}).join(' ');
+			});
+			if (theme)
+				this.picker.addClass('npdatepicker-theme-' + theme);
+			this.o.theme = this._o.theme = theme || '';
+			return this;
+		},
+
+		// 'picker', true or false; see the unicodeDigits option
+		setUnicodeDigits: function(value){
+			this._process_options({unicodeDigits: value});
+			this.fill();
+			if (this.dates.length)
+				this.setValue();
 			return this;
 		},
 
@@ -1357,7 +1380,7 @@
 				endYear = end.year,
 				endMonth = end.month - 1;
 			this.picker.find('.datepicker-days .datepicker-switch')
-						.text(DPGlobal.formatDate(d, titleFormat, this.o.language, true));
+						.text(DPGlobal.formatDate(d, titleFormat, this.o.language, this.o.unicodeDigits !== false));
 			this.picker.find('tfoot .today')
 						.text(todaytxt)
 						.css('display', titleBtnVisible ? 'table-cell' : 'none');
@@ -1903,6 +1926,16 @@
 				p.clearDates();
 			});
 		},
+		setTheme: function(theme){
+			$.each(this.pickers, function(i, p){
+				p.setTheme(theme);
+			});
+		},
+		setUnicodeDigits: function(value){
+			$.each(this.pickers, function(i, p){
+				p.setUnicodeDigits(value);
+			});
+		},
 		dateUpdated: function(e){
 			// `this.updating` is a workaround for preventing infinite recursion
 			// between `changeDate` triggering and `setUTCDate` calling.  Until
@@ -2008,6 +2041,10 @@
 					locopts = opts_from_locale(xopts.language),
 					// Options priority: js args, data-attrs, locales, defaults
 					opts = $.extend({}, defaults, locopts, elopts, options);
+				// Picking several dates needs the picker to stay open, so multidate
+				// turns autoclose off unless it was set explicitly
+				if (opts.multidate && opts.multidate !== 1 && !('autoclose' in elopts) && !(options && 'autoclose' in options))
+					opts.autoclose = false;
 				if ($this.hasClass('input-daterange') || opts.inputs){
 					$.extend(opts, {
 						inputs: opts.inputs || $this.find('input').toArray()
@@ -2063,7 +2100,6 @@
 		maxViewMode: 4,
 		multidate: false,
 		multidateSeparator: ',',
-		nativeDigits: false,
 		orientation: "auto",
 		pickerClass: '',
 		rtl: false,
@@ -2084,6 +2120,10 @@
 			leftArrow: '&#x00AB;',
 			rightArrow: '&#x00BB;'
 		},
+		theme: '',
+		// Locale digits (Devanagari for 'np'): 'picker' = in the calendar only,
+		// true = in the calendar and the input value, false = never
+		unicodeDigits: 'picker',
 		showWeekDays: true
 	};
 	var locale_opts = $.fn.npdatepicker.locale_opts = [
@@ -2290,7 +2330,7 @@
 			bs.day = Math.min(bs.day, NepaliCalendar.daysInMonth(bs.year, bs.month));
 			return bsDate(bs.year, bs.month, bs.day);
 		},
-		formatDate: function(date, format, language, nativeDigits){
+		formatDate: function(date, format, language, unicodeDigits){
 			if (!date)
 				return '';
 			if (typeof format === 'string')
@@ -2321,7 +2361,7 @@
 				date.push(val[format.parts[i]]);
 			}
 			date = date.join('');
-			return nativeDigits && locale.digits ? toNativeDigits(date, locale.digits) : date;
+			return unicodeDigits && locale.digits ? toNativeDigits(date, locale.digits) : date;
 		},
 		headTemplate: '<thead>'+
 						'<tr>'+

@@ -64,8 +64,8 @@ test('assumeNearbyYear expands two-digit BS years', () => {
 	assert.strictEqual(dp.getBsDate().year, 2080);
 });
 
-test('Nepali locale: Devanagari input and nativeDigits output', () => {
-	const { $input, dp } = picker({ language: 'np', format: 'yyyy-mm-dd', nativeDigits: true });
+test('unicodeDigits: true writes Devanagari to the input', () => {
+	const { $input, dp } = picker({ language: 'np', format: 'yyyy-mm-dd', unicodeDigits: true });
 	$input.val('२०८३-०७-१४');
 	dp.update();
 	same(dp.getBsDate(), { year: 2083, month: 7, day: 14 });
@@ -74,7 +74,7 @@ test('Nepali locale: Devanagari input and nativeDigits output', () => {
 	assert.strictEqual(dp.getFormattedDate('d MM yyyy'), '१४ कार्तिक २०८३');
 });
 
-test('Nepali locale shows Devanagari digits in the picker but Latin in the input by default', () => {
+test('unicodeDigits default (picker): Devanagari in the picker, Latin in the input', () => {
 	const { $input, dp } = picker({ language: 'np' });
 	$input.npdatepicker('setDate', '2083-07-14');
 	assert.strictEqual($input.val(), '2083-07-14');
@@ -238,10 +238,16 @@ test('tooltips from beforeShowDay are escaped', () => {
 });
 
 test('pickerClass and the npdatepicker class are added for CSS scoping', () => {
-	const { dp } = picker({ language: 'en', pickerClass: 'npdatepicker-material' });
+	const { dp } = picker({ language: 'en', pickerClass: 'my-extra', theme: 'dark' });
 	assert.ok(dp.picker.hasClass('datepicker'));
 	assert.ok(dp.picker.hasClass('npdatepicker'));
-	assert.ok(dp.picker.hasClass('npdatepicker-material'));
+	assert.ok(dp.picker.hasClass('my-extra'));
+	assert.ok(dp.picker.hasClass('npdatepicker-theme-dark'));
+	dp.setTheme('nepal');
+	assert.ok(dp.picker.hasClass('npdatepicker-theme-nepal'));
+	assert.ok(!dp.picker.hasClass('npdatepicker-theme-dark'));
+	dp.setTheme('');
+	assert.ok(!/npdatepicker-theme-/.test(dp.picker.attr('class')));
 });
 
 test('data-api uses its own namespace', () => {
@@ -257,4 +263,37 @@ test('data attributes configure options', () => {
 	const $input = env.$('#d').npdatepicker();
 	$input.npdatepicker('setDate', '14/07/2083');
 	assert.strictEqual($input.val(), '14/07/2083');
+});
+
+test('unicodeDigits: false shows Latin digits even in Nepali', () => {
+	const { $input, dp } = picker({ language: 'np', unicodeDigits: false, startView: 1 });
+	$input.npdatepicker('setDate', '2083-07-14');
+	assert.strictEqual($input.val(), '2083-07-14');
+	assert.strictEqual(dp.picker.find('td.day.active').text(), '14');
+	assert.strictEqual(dp.picker.find('.datepicker-days .datepicker-switch').text(), 'कार्तिक 2083');
+	assert.strictEqual(dp.picker.find('.datepicker-months .datepicker-switch').text(), '2083');
+	assert.strictEqual(dp.picker.find('.datepicker-years span.year[data-year="2083"]').text(), '2083');
+	// typing Devanagari still works
+	$input.val('२०८३-०७-१०');
+	dp.update();
+	same(dp.getBsDate(), { year: 2083, month: 7, day: 10 });
+});
+
+test('setUnicodeDigits switches digits at runtime', () => {
+	const { $input, dp } = picker({ language: 'np' });
+	$input.npdatepicker('setDate', '2083-07-14');
+	$input.npdatepicker('setUnicodeDigits', true);
+	assert.strictEqual($input.val(), '२०८३-०७-१४');
+	$input.npdatepicker('setUnicodeDigits', false);
+	assert.strictEqual($input.val(), '2083-07-14');
+	assert.strictEqual(dp.picker.find('td.day.active').text(), '14');
+});
+
+test('multidate keeps the picker open unless autoclose is set', () => {
+	const a = picker({ language: 'en', multidate: 3 });
+	assert.strictEqual(a.dp.o.autoclose, false);
+	const b = picker({ language: 'en', multidate: 3, autoclose: true });
+	assert.strictEqual(b.dp.o.autoclose, true);
+	const c = picker({ language: 'en' });
+	assert.strictEqual(c.dp.o.autoclose, true);
 });

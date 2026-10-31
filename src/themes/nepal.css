@@ -1,0 +1,30 @@
+/* Nepal — crimson header and deep-blue selection, from the national flag. */
+.npdatepicker-theme-nepal {
+	--npdp-bg: #ffffff;
+	--npdp-text: #1c1c28;
+	--npdp-muted: #a9a9b6;
+	--npdp-disabled: #d4d4dc;
+	--npdp-border: #e6c9cf;
+	--npdp-radius: 8px;
+	--npdp-shadow: 0 10px 28px rgba(150, 10, 40, 0.16);
+	--npdp-padding: 0;
+
+	--npdp-head-bg: #dc143c;
+	--npdp-head-text: #ffffff;
+	--npdp-head-hover: rgba(255, 255, 255, 0.18);
+	--npdp-dow-text: #ffe3e8;
+	--npdp-arrow-top: #dc143c;
+
+	--npdp-cell-radius: 6px;
+	--npdp-cell-size: 32px;
+	--npdp-hover-bg: #fdecef;
+	--npdp-accent: #003893;
+	--npdp-accent-text: #ffffff;
+	--npdp-today-bg: #ffe4ea;
+	--npdp-today-text: #b0102f;
+	--npdp-highlight-bg: #fff5f7;
+	--npdp-highlight-text: #dc143c;
+	--npdp-range-bg: #e3ebf8;
+	--npdp-range-text: #003893;
+	--npdp-link: #dc143c;
+}

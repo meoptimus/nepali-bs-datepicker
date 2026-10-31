@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Documentation — Nepali Datepicker</title>
+	<meta name="description" content="Installation, CDN links, options, methods, events, conversion API and themes for the Nepali (Bikram Sambat) datepicker.">
+	<link rel="stylesheet" href="../dist/css/bootstrap-datepicker3.standalone.min.css">
+	<link rel="stylesheet" href="../dist/css/nepali-datepicker-themes.min.css">
+	<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topbar">
+	<div class="topbar-inner">
+		<a class="brand" href="index.html"><span class="brand-mark">बि</span> Nepali Datepicker</a>
+		<nav class="nav">
+			<a href="index.html">Demo</a>
+			<a class="current" href="documentation.html">Documentation</a>
+			<a href="#cdn">CDN</a>
+			<a href="index.html#themes">Themes</a>
+		</nav>
+		<span class="nav-spacer"></span>
+		<a class="btn" href="https://github.com/__GITHUB_USER__/nepali-bs-datepicker">GitHub</a>
+	</div>
+</header>
+
+<div class="wrap docs">
+	<nav class="toc">
+		<a href="#getting-started">Getting started</a>
+		<a class="sub" href="#cdn">CDN</a>
+		<a class="sub" href="#npm">npm</a>
+		<a class="sub" href="#download">Download</a>
+		<a class="sub" href="#markup">Markup</a>
+		<a href="#dates">BS strings &amp; Date objects</a>
+		<a href="#format">Date format</a>
+		<a href="#options">Options</a>
+		<a href="#methods">Methods</a>
+		<a href="#events">Events</a>
+		<a href="#calendar-api">Conversion API</a>
+		<a href="#digits">Unicode digits</a>
+		<a href="#locales">Languages</a>
+		<a href="#themes">Themes</a>
+		<a class="sub" href="#custom-theme">Custom theme</a>
+		<a href="#calendar-data">Updating calendar data</a>
+		<a href="#compatibility">Compatibility</a>
+		<a href="#migration">Migrating</a>
+	</nav>
+
+	<article class="content">
+		<h1>Documentation</h1>
+		<p>Nepali Datepicker is a Bikram Sambat (BS) datepicker for jQuery. It is a port of
+			<a href="https://github.com/uxsolutions/bootstrap-datepicker">bootstrap-datepicker</a> 1.10.1, so anything you
+			know about that plugin applies here. This page covers what is different and what is new.</p>
+
+		<h2 id="getting-started">Getting started</h2>
+		<p>You need jQuery (1.12 to 4.x), the plugin script, and one bootstrap-datepicker stylesheet. Themes are optional.</p>
+
+		<h3 id="cdn">CDN</h3>
+		<p>Files are served by jsDelivr and unpkg from the npm package. Pin a version in production.</p>
+		<div class="tabs" role="tablist">
+			<button type="button" role="tab">jsDelivr</button>
+			<button type="button" role="tab">unpkg</button>
+			<button type="button" role="tab">GitHub (jsDelivr)</button>
+		</div>
+		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+&lt;!-- optional: all themes, or one file from dist/css/themes/ --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css"&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
+		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css"&gt;
+
+&lt;script src="https://unpkg.com/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
+		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/__GITHUB_USER__/nepali-bs-datepicker@v2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/__GITHUB_USER__/nepali-bs-datepicker@v2.0.0/dist/css/nepali-datepicker-themes.min.css"&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/__GITHUB_USER__/nepali-bs-datepicker@v2.0.0/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
+
+		<h3 id="npm">npm</h3>
+<pre><code>npm install nepali-bs-datepicker jquery</code></pre>
+<pre><code>import $ from 'jquery';
+import 'nepali-bs-datepicker';   // registers $.fn.npdatepicker on that jQuery
+import 'nepali-bs-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css';
+import 'nepali-bs-datepicker/dist/css/themes/nepal.min.css';</code></pre>
+		<p>The script is UMD: it works with a <code>&lt;script&gt;</code> tag, CommonJS (<code>require</code>) and AMD.</p>
+
+		<h3 id="download">Download</h3>
+		<p>Copy <code>dist/js/nepali-datepicker.min.js</code> and the stylesheets you need from <code>dist/css/</code>.</p>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>Stylesheet</th><th>Use when</th></tr>
+			<tr><td>bootstrap-datepicker3.standalone.css</td><td>Bootstrap is not on the page (most common)</td></tr>
+			<tr><td>bootstrap-datepicker3.css</td><td>The page already loads Bootstrap 3 or later</td></tr>
+			<tr><td>bootstrap-datepicker(.standalone).css</td><td>Bootstrap 2 look</td></tr>
+			<tr><td>nepali-datepicker-themes.css</td><td>All four themes (load after one of the above)</td></tr>
+			<tr><td>themes/&lt;name&gt;.css</td><td>A single theme: material, nepal, minimal, dark</td></tr>
+		</table></div>
+		<p>The <code>bootstrap-datepicker*.css</code> files are the unmodified upstream 1.10.1 stylesheets, so a copy you already
+			host works too.</p>
+
+		<h3 id="markup">Markup</h3>
+<pre><code>&lt;!-- input --&gt;
+&lt;input id="dob"&gt;
+
+&lt;!-- component: input + add-on button --&gt;
+&lt;div class="input-group date" id="dob2"&gt;
+  &lt;input type="text" class="form-control"&gt;
+  &lt;span class="input-group-addon"&gt;📅&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- range --&gt;
+&lt;div class="input-daterange" id="period"&gt;
+  &lt;input type="text"&gt; to &lt;input type="text"&gt;
+&lt;/div&gt;
+
+&lt;!-- inline --&gt;
+&lt;div id="calendar"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  $('#dob, #dob2, #period, #calendar').npdatepicker({ language: 'en' });
+&lt;/script&gt;</code></pre>
+		<p>Or skip JavaScript with <code>data-provide="npdatepicker"</code> (or <code>npdatepicker-inline</code> on a
+			<code>div</code>) and set options as <code>data-date-*</code> attributes, eg
+			<code>data-date-format="dd/mm/yyyy"</code>, <code>data-date-today-btn="linked"</code>.</p>
+
+		<h2 id="dates">BS strings &amp; Date objects</h2>
+		<p>Strings are always Bikram Sambat dates written in the <code>format</code> option. JavaScript <code>Date</code> objects
+			are always the equivalent Gregorian (AD) date.</p>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>API</th><th>Accepts / returns</th></tr>
+			<tr><td>input value</td><td>BS string, eg <code>2083-07-15</code> (Latin or Devanagari digits)</td></tr>
+			<tr><td>setDate(x)</td><td>BS string, or AD <code>Date</code></td></tr>
+			<tr><td>startDate, endDate</td><td>BS string, or AD <code>Date</code></td></tr>
+			<tr><td>datesDisabled</td><td>array (or comma-separated string) of BS strings</td></tr>
+			<tr><td>defaultViewDate</td><td>BS string, AD <code>Date</code>, or <code>{year, month, day}</code> in BS with a <b>0-based</b> month</td></tr>
+			<tr><td>getDate(), getDates()</td><td>AD <code>Date</code> (local midnight)</td></tr>
+			<tr><td>getBsDate(), getBsDates()</td><td><code>{year, month, day}</code>, month 1–12</td></tr>
+			<tr><td>e.date / e.bsDate</td><td>AD <code>Date</code> / <code>{year, month, day}</code></td></tr>
+		</table></div>
+		<p>Relative strings from bootstrap-datepicker also work: <code>'today'</code>, <code>'tomorrow'</code>,
+			<code>'+1m'</code>, <code>'-2y'</code>, <code>'+7d'</code>. Months and years move in BS.</p>
+
+		<h2 id="format">Date format</h2>
+		<p>The <code>format</code> option controls both what is written to the input and how typed or pasted text is read.</p>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>Token</th><th>Meaning</th><th>Example (15 Kartik 2083, Saturday)</th></tr>
+			<tr><td>d / dd</td><td>Day of month</td><td>15 / 15</td></tr>
+			<tr><td>D / DD</td><td>Weekday, short / full</td><td>Sat / Saturday · शनि / शनिबार</td></tr>
+			<tr><td>m / mm</td><td>Month number</td><td>7 / 07</td></tr>
+			<tr><td>M / MM</td><td>Month name, short / full</td><td>Kar / Kartik · कार्तिक</td></tr>
+			<tr><td>yy / yyyy</td><td>Year</td><td>83 / 2083</td></tr>
+		</table></div>
+<pre><code>$('#d').npdatepicker({ format: 'dd/mm/yyyy' });              // 15/07/2083
+$('#d').npdatepicker({ format: 'DD, d MM yyyy', language: 'en' }); // Saturday, 15 Kartik 2083
+$('#d').npdatepicker({ format: 'd MM yyyy', unicodeDigits: true }); // १५ कार्तिक २०८३</code></pre>
+		<p>For anything else pass <code>{ toDisplay: function (date, format, language) {…}, toValue: function (text, format, language) {…} }</code>,
+			exactly as in bootstrap-datepicker. Use <code>$.fn.npdatepicker.calendar</code> inside them to convert.</p>
+
+		<h2 id="options">Options</h2>
+		<p>Pass options as an object, or as <code>data-date-*</code> attributes (camelCase becomes dash-case).</p>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>Option</th><th>Default</th><th>Description</th></tr>
+			<tr><td>format</td><td>'yyyy-mm-dd'</td><td>BS date format, see <a href="#format">Date format</a>.</td></tr>
+			<tr><td>language</td><td>'np'</td><td><code>'np'</code> (alias <code>'ne'</code>) or <code>'en'</code>, or a locale you add.</td></tr>
+			<tr><td>unicodeDigits</td><td>'picker'</td><td>Devanagari numerals (१ २ ३) for the <code>np</code> locale. <code>'picker'</code>: in the calendar only, the input keeps <code>1 2 3</code> (safest for forms). <code>true</code>: in the calendar <b>and</b> the input value. <code>false</code>: never, even in Nepali. Typing either digit style always works.</td></tr>
+			<tr><td>theme</td><td>''</td><td>Adds <code>npdatepicker-theme-&lt;name&gt;</code>: <code>'material'</code>, <code>'nepal'</code>, <code>'minimal'</code>, <code>'dark'</code>, or your own.</td></tr>
+			<tr><td>pickerClass</td><td>''</td><td>Extra classes for the picker element.</td></tr>
+			<tr><td>autoclose</td><td>true</td><td>Close after a date is picked. Turned off automatically for <code>multidate</code> pickers unless you set it.</td></tr>
+			<tr><td>todayHighlight</td><td>true</td><td>Highlight today.</td></tr>
+			<tr><td>todayBtn</td><td>false</td><td><code>true</code> shows a button that jumps to today; <code>'linked'</code> also selects it.</td></tr>
+			<tr><td>clearBtn</td><td>false</td><td>Show a button that clears the input.</td></tr>
+			<tr><td>startDate / endDate</td><td>calendar limits</td><td>Earliest / latest selectable date. Clamped to BS 1970-01-01 – 2099-12-30.</td></tr>
+			<tr><td>datesDisabled</td><td>[]</td><td>BS dates that cannot be picked.</td></tr>
+			<tr><td>daysOfWeekDisabled</td><td>[]</td><td>Weekdays that cannot be picked, 0 = Sunday … 6 = Saturday.</td></tr>
+			<tr><td>daysOfWeekHighlighted</td><td>[]</td><td>Weekdays to highlight.</td></tr>
+			<tr><td>beforeShowDay</td><td>$.noop</td><td><code>function (date, bsDate)</code> → <code>false</code>, a class string, or <code>{enabled, classes, tooltip, content}</code>.</td></tr>
+			<tr><td>beforeShowMonth</td><td>$.noop</td><td><code>function (date, bsDate)</code> for each month in the months view; <code>date</code> is 1st of the BS month in AD.</td></tr>
+			<tr><td>beforeShowYear / Decade / Century</td><td>$.noop</td><td><code>function (date, bsYear)</code>; <code>date</code> is 1 Baisakh of that BS year in AD.</td></tr>
+			<tr><td>defaultViewDate</td><td>today</td><td>Month shown when nothing is selected.</td></tr>
+			<tr><td>startView</td><td>0 / 'days'</td><td>First view: <code>'days'</code>, <code>'months'</code>, <code>'years'</code>, <code>'decades'</code>, <code>'centuries'</code>.</td></tr>
+			<tr><td>minViewMode / maxViewMode</td><td>0 / 4</td><td>Limit the views; <code>minViewMode: 'months'</code> makes a month picker.</td></tr>
+			<tr><td>multidate</td><td>false</td><td><code>true</code> or a maximum number of dates.</td></tr>
+			<tr><td>multidateSeparator</td><td>','</td><td>Separator between multiple dates in the input.</td></tr>
+			<tr><td>toggleActive</td><td>false</td><td>Clicking the selected date deselects it.</td></tr>
+			<tr><td>weekStart</td><td>0</td><td>First day of the week, 0 = Sunday.</td></tr>
+			<tr><td>calendarWeeks</td><td>false</td><td>Show ISO week numbers (of the AD date).</td></tr>
+			<tr><td>assumeNearbyYear</td><td>false</td><td><code>true</code> or a number: two-digit years are completed near the current BS year.</td></tr>
+			<tr><td>forceParse</td><td>true</td><td>Rewrite the typed text in <code>format</code> when the picker closes.</td></tr>
+			<tr><td>keyboardNavigation</td><td>true</td><td>Arrow keys move the focus; Ctrl/Shift + arrows move by year/month; Enter selects.</td></tr>
+			<tr><td>orientation</td><td>'auto'</td><td><code>'top'</code>, <code>'bottom'</code>, <code>'left'</code>, <code>'right'</code> or combinations like <code>'bottom left'</code>.</td></tr>
+			<tr><td>container</td><td>'body'</td><td>Element the dropdown is appended to.</td></tr>
+			<tr><td>zIndexOffset</td><td>10</td><td>Added to the highest parent z-index.</td></tr>
+			<tr><td>isInline</td><td>null</td><td>Force inline (<code>true</code>) or dropdown (<code>false</code>) mode.</td></tr>
+			<tr><td>showOnFocus</td><td>true</td><td>Open when the input gets focus.</td></tr>
+			<tr><td>enableOnReadonly</td><td>true</td><td>Allow opening on readonly inputs.</td></tr>
+			<tr><td>disableTouchKeyboard</td><td>false</td><td>Blur the input on touch devices so the keyboard stays hidden.</td></tr>
+			<tr><td>immediateUpdates</td><td>false</td><td>Update the input when the month or year changes.</td></tr>
+			<tr><td>updateViewDate</td><td>true</td><td>Move the view to the selected date.</td></tr>
+			<tr><td>keepEmptyValues</td><td>false</td><td>Range only: do not fill empty inputs when one is picked.</td></tr>
+			<tr><td>inputs</td><td>—</td><td>Range only: the inputs to link (defaults to the inputs inside the element).</td></tr>
+			<tr><td>title</td><td>''</td><td>Text shown above the calendar.</td></tr>
+			<tr><td>showWeekDays</td><td>true</td><td>Show the weekday header row.</td></tr>
+			<tr><td>rtl</td><td>false</td><td>Right-to-left layout.</td></tr>
+			<tr><td>templates</td><td>« »</td><td><code>{leftArrow, rightArrow}</code> HTML for the arrows.</td></tr>
+		</table></div>
+		<p>Change the defaults for every picker with <code>$.fn.npdatepicker.defaults</code>, eg
+			<code>$.fn.npdatepicker.defaults.language = 'en';</code></p>
+
+		<h2 id="methods">Methods</h2>
+		<p>Call as <code>$(el).npdatepicker('method', arg1, …)</code>. Methods that return a value only work on a single element.</p>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>Method</th><th>Description</th></tr>
+			<tr><td>show() / hide()</td><td>Open or close the picker.</td></tr>
+			<tr><td>update([date…])</td><td>Re-read the input, or set the given dates without firing <code>changeDate</code>.</td></tr>
+			<tr><td>setDate(date) / setDates(d1, d2…)</td><td>Select BS strings or AD Dates and fire <code>changeDate</code>.</td></tr>
+			<tr><td>setUTCDate(date) / setUTCDates(…)</td><td>Same, with UTC-midnight Date objects.</td></tr>
+			<tr><td>getDate() / getDates()</td><td>Selected date(s) as local AD Dates.</td></tr>
+			<tr><td>getUTCDate() / getUTCDates()</td><td>Selected date(s) as UTC-midnight AD Dates.</td></tr>
+			<tr><td>getBsDate() / getBsDates()</td><td>Selected date(s) as <code>{year, month, day}</code>.</td></tr>
+			<tr><td>getFormattedDate([format])</td><td>Selected date(s) as a string.</td></tr>
+			<tr><td>clearDates()</td><td>Clear the selection.</td></tr>
+			<tr><td>setStartDate(d) / setEndDate(d)</td><td>Change the range limits.</td></tr>
+			<tr><td>getStartDate() / getEndDate()</td><td>Current limits as UTC-midnight AD Dates.</td></tr>
+			<tr><td>setDatesDisabled(arr)</td><td>Replace the disabled dates.</td></tr>
+			<tr><td>setDaysOfWeekDisabled(arr) / setDaysOfWeekHighlighted(arr)</td><td>Replace the weekday rules.</td></tr>
+			<tr><td>setTheme(name)</td><td>Switch theme; <code>''</code> removes it.</td></tr>
+			<tr><td>setUnicodeDigits(value)</td><td>Switch digits: <code>'picker'</code>, <code>true</code> or <code>false</code>.</td></tr>
+			<tr><td>destroy()</td><td>Remove the picker and its events. (<code>remove</code> is a deprecated alias.)</td></tr>
+		</table></div>
+
+		<h2 id="events">Events</h2>
+<pre><code>$('#dob').npdatepicker().on('changeDate', function (e) {
+  e.date;       // AD Date (local) or undefined when cleared
+  e.dates;      // all selected AD Dates
+  e.bsDate;     // {year: 2083, month: 7, day: 15}
+  e.bsDates;    // all selected BS dates
+  e.format();   // "2083-07-15" — also e.format('d MM yyyy') or e.format(index, format)
+});</code></pre>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>Event</th><th>Fired when</th></tr>
+			<tr><td>show / hide</td><td>The dropdown opens or closes.</td></tr>
+			<tr><td>changeDate</td><td>The selection changes (click, keyboard, typing, <code>setDate</code>).</td></tr>
+			<tr><td>clearDate</td><td>The selection becomes empty.</td></tr>
+			<tr><td>changeMonth / changeYear / changeDecade / changeCentury</td><td>The visible BS month/year/decade/century changes; <code>e.date</code> is the new view date.</td></tr>
+			<tr><td>changeViewMode</td><td>Switching between days, months, years… views.</td></tr>
+		</table></div>
+
+		<h2 id="calendar-api">Conversion API</h2>
+		<p><code>$.fn.npdatepicker.calendar</code> converts between calendars without a picker. All months are 1–12.</p>
+<pre><code>var cal = $.fn.npdatepicker.calendar;
+
+cal.toBS(new Date(2026, 9, 31));   // {year: 2083, month: 7, day: 15}
+cal.toAD(2083, 7, 15);             // Sat Oct 31 2026 00:00 (local)
+cal.today();                       // today in BS
+cal.isValid(2083, 4, 32);          // false
+cal.daysInMonth(2083, 3);          // 32
+cal.daysInYear(2083);              // 365
+cal.range();                       // {minYear: 1970, maxYear: 2099}
+cal.getYear(2083);                 // [31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30]
+cal.setYear(2100, [...12 numbers]);  // append or correct a year
+cal.extend({2100: [...], 2101: [...]});
+
+// Formatting and parsing helpers (internal dates are UTC midnight)
+var D = $.fn.npdatepicker.DPGlobal;
+D.formatDate(new Date(Date.UTC(2026, 9, 31)), 'd MM yyyy', 'np', true);  // "१५ कार्तिक २०८३"
+D.parseDate('15/07/2083', 'dd/mm/yyyy', 'en');                          // Date (UTC midnight)</code></pre>
+		<p><code>toBS</code> and <code>toAD</code> return <code>null</code> for dates outside the table.</p>
+
+		<h2 id="digits">Unicode (Devanagari) digits</h2>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>unicodeDigits</th><th>Calendar shows</th><th>Input value</th></tr>
+			<tr><td>'picker' (default)</td><td>१ २ ३ … २०८३</td><td>2083-07-15</td></tr>
+			<tr><td>true</td><td>१ २ ३ … २०८३</td><td>२०८३-०७-१५</td></tr>
+			<tr><td>false</td><td>1 2 3 … 2083</td><td>2083-07-15</td></tr>
+		</table></div>
+		<p>Only locales with a <code>digits</code> array are affected, so the setting does nothing with <code>language: 'en'</code>.
+			Switch at runtime with <code>$(el).npdatepicker('setUnicodeDigits', true)</code>.</p>
+
+		<h2 id="locales">Languages</h2>
+		<p>Two locales ship with the plugin: <code>np</code> (Nepali, also available as <code>ne</code>) and <code>en</code>
+			(English transliteration of the BS months). Add your own:</p>
+<pre><code>$.fn.npdatepicker.dates['np-roman'] = {
+  days:        ['Aaitabar', 'Sombar', 'Mangalbar', 'Budhabar', 'Bihibar', 'Sukrabar', 'Sanibar'],
+  daysShort:   ['Aai', 'Som', 'Man', 'Bud', 'Bih', 'Suk', 'San'],
+  daysMin:     ['Aa', 'So', 'Ma', 'Bu', 'Bi', 'Su', 'Sa'],
+  months:      ['Baisakh', 'Jestha', 'Asar', 'Shrawan', 'Bhadau', 'Asoj', 'Kartik', 'Mangsir', 'Poush', 'Magh', 'Fagun', 'Chait'],
+  monthsShort: ['Bai', 'Jes', 'Asa', 'Shr', 'Bha', 'Aso', 'Kar', 'Man', 'Pou', 'Mag', 'Fag', 'Cha'],
+  today: 'Aaja', clear: 'Hataunus', titleFormat: 'MM yyyy',
+  digits: null          // or an array of 10 digit characters
+};</code></pre>
+
+		<h2 id="themes">Themes</h2>
+		<p>Load <code>nepali-datepicker-themes.css</code> (or one file from <code>dist/css/themes/</code>) after the base
+			stylesheet and pass <code>theme</code>. Themes only restyle the picker, never the rest of your page.</p>
+<pre><code>$('#dob').npdatepicker({ theme: 'nepal' });
+$('#dob').npdatepicker('setTheme', 'dark');   // switch later</code></pre>
+		<div class="themes" style="margin-top:12px">
+			<div class="theme-tile"><h3>Material</h3><code>material</code><div class="picker-slot" data-theme="material"></div></div>
+			<div class="theme-tile"><h3>Nepal</h3><code>nepal</code><div class="picker-slot" data-theme="nepal"></div></div>
+			<div class="theme-tile"><h3>Minimal</h3><code>minimal</code><div class="picker-slot" data-theme="minimal"></div></div>
+			<div class="theme-tile dark-bg"><h3>Dark</h3><code>dark</code><div class="picker-slot" data-theme="dark"></div></div>
+		</div>
+
+		<h3 id="custom-theme">Custom theme</h3>
+		<p>Every theme is a set of CSS custom properties. Tweak one by overriding its variables:</p>
+<pre><code>.npdatepicker-theme-nepal {
+  --npdp-head-bg: #0b6e4f;
+  --npdp-accent: #0b6e4f;
+}</code></pre>
+		<p>To add a new theme to the project, create <code>src/themes/&lt;name&gt;.css</code> with the variables below and run
+			<code>npm run build</code>; the shared rules are generated for it.</p>
+		<div class="table-wrap"><table class="ref">
+			<tr><th>Variable</th><th>Controls</th></tr>
+			<tr><td>--npdp-bg, --npdp-text</td><td>Picker background and day text</td></tr>
+			<tr><td>--npdp-border, --npdp-radius, --npdp-shadow, --npdp-padding</td><td>Picker frame</td></tr>
+			<tr><td>--npdp-head-bg, --npdp-head-text, --npdp-head-hover, --npdp-dow-text</td><td>Header, arrows and weekday row</td></tr>
+			<tr><td>--npdp-arrow-top</td><td>Fill of the dropdown arrow when it touches the header</td></tr>
+			<tr><td>--npdp-cell-radius, --npdp-cell-size</td><td>Day cell shape and spacing</td></tr>
+			<tr><td>--npdp-hover-bg, --npdp-muted, --npdp-disabled</td><td>Hover, other-month and disabled days</td></tr>
+			<tr><td>--npdp-accent, --npdp-accent-text</td><td>Selected date, month and year</td></tr>
+			<tr><td>--npdp-today-bg, --npdp-today-text</td><td>Today</td></tr>
+			<tr><td>--npdp-highlight-bg, --npdp-highlight-text</td><td><code>daysOfWeekHighlighted</code></td></tr>
+			<tr><td>--npdp-range-bg, --npdp-range-text</td><td>Days inside a range</td></tr>
+			<tr><td>--npdp-link</td><td>Today / Clear buttons</td></tr>
+			<tr><td>--npdp-font, --npdp-title-weight, --npdp-cell-padding, --npdp-disabled-decoration</td><td>Optional extras</td></tr>
+		</table></div>
+		<h3 id="custom-classes">Styling your own day classes</h3>
+		<p>Theme rules are deliberately specific so they beat bootstrap-datepicker's CSS. To colour classes you add with
+			<code>beforeShowDay</code>, set the theme variables on the cell as well — they win under every theme:</p>
+<pre><code>.datepicker td.day.holiday:not(.active) {
+  color: #c8102e;           /* without a theme */
+  --npdp-text: #c8102e;     /* with any theme */
+  --npdp-hover-bg: #fde8ec;
+}</code></pre>
+		<p>Prefer plain CSS? The picker has the class <code>npdatepicker</code> and uses bootstrap-datepicker's class names
+			(<code>.day</code>, <code>.active</code>, <code>.today</code>, <code>.range</code>, <code>.disabled</code>…), so any
+			bootstrap-datepicker theme works as well.</p>
+
+		<h2 id="calendar-data">Updating calendar data</h2>
+		<p>BS month lengths are announced each year by the Nepal Panchanga Nirnayak Samiti, and years in the future are
+			projections. All of the data is one table at the top of <code>src/nepali-datepicker.js</code>:</p>
+<pre><code>years: {
+    // Year: [Bai, Jes, Asa, Shr, Bha, Ash, Kar, Man, Pou, Mag, Fal, Cha]
+    2083: [31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30],
+    …
+}</code></pre>
+		<ol>
+			<li>Edit a row to correct a year, or append a row for a new year (years must be contiguous).</li>
+			<li>Run <code>npm test</code>: the table is validated and every day is round-tripped.</li>
+			<li>Run <code>npm run build</code> and release.</li>
+		</ol>
+		<p>Need a fix before the next release? Patch it at runtime, before creating pickers:</p>
+<pre><code>$.fn.npdatepicker.calendar.setYear(2084, [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30]);</code></pre>
+
+		<h2 id="compatibility">Compatibility</h2>
+		<ul>
+			<li>jQuery 1.12 to 4.x; all evergreen browsers. The script is ES5.</li>
+			<li>Correct in every timezone: dates are calendar days, not instants.</li>
+			<li>Can run next to bootstrap-datepicker: it uses <code>$.fn.npdatepicker</code>, <code>data('npdatepicker')</code>,
+				<code>data-provide="npdatepicker"</code> and the <code>.npdatepicker</code> event namespace.</li>
+			<li><code>$.fn.npdatepicker.noConflict()</code> restores a previous <code>$.fn.npdatepicker</code>.</li>
+		</ul>
+
+		<h2 id="migration">Migrating</h2>
+		<h3>From bootstrap-datepicker</h3>
+		<p>Replace <code>.datepicker(</code> with <code>.npdatepicker(</code> and <code>data-provide="datepicker"</code> with
+			<code>data-provide="npdatepicker"</code>. Strings you pass (input values, <code>startDate</code>…) are now BS dates;
+			<code>Date</code> objects keep meaning AD dates.</p>
+		<h3>From the in-house v1 (<code>v1.js</code>)</h3>
+		<ul>
+			<li>The <code>NepaliFunctions</code> script is no longer needed; remove it.</li>
+			<li><code>getDate()</code> now returns a real AD <code>Date</code>; use <code>getBsDate()</code> or <code>e.format()</code> for the BS value.</li>
+			<li>The default <code>format</code> is <code>yyyy-mm-dd</code>, which matches what v1 wrote.</li>
+		</ul>
+	</article>
+</div>
+
+<footer class="site">
+	Nepali Datepicker · Apache-2.0 · derived from <a href="https://github.com/uxsolutions/bootstrap-datepicker">bootstrap-datepicker</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="../dist/js/nepali-datepicker.js"></script>
+<script src="assets/site.js"></script>
+<script>
+	$('.picker-slot').each(function () {
+		$(this).npdatepicker({ theme: $(this).data('theme'), todayBtn: true });
+	});
+</script>
+</body>
+</html>

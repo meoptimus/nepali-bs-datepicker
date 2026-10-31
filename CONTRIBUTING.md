@@ -30,6 +30,17 @@ In the pull request, link the source of the data (the official Panchanga publish
 Panchanga Nirnayak Samiti, or another authoritative calendar), then run `npm test`. The checker fails on
 malformed rows and warns about years that are not 365 or 366 days long.
 
+## Themes
+
+Each theme is `src/themes/<name>.css` and contains only CSS custom properties; `src/themes/_template.css` holds
+the shared rules and `npm run build` combines them. Copy an existing theme to start a new one, then check it on
+`docs/index.html`.
+
+## Browser checks
+
+Serve the repository (any static server), open `docs/index.html` and paste `test/browser-check.js` into the
+console. It resolves to a summary of 72 checks covering every demo, theme and digit mode.
+
 ## Code style
 
 - Match the surrounding code: tabs, ES5 syntax (no build step for the plugin itself), jQuery idioms.

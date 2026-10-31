@@ -6,12 +6,16 @@
   "files": [
     "dist",
     "LICENSE",
-    "NOTICE"
+    "NOTICE",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "node scripts/build.js",
     "check-calendar": "node scripts/check-calendar.js",
-    "test": "node scripts/check-calendar.js && node --test \"test/*.test.js\""
+    "test": "node scripts/check-calendar.js && node --test \"test/*.test.js\"",
+    "test:tz": "node test/tz-runner.js America/Los_Angeles && node test/tz-runner.js Asia/Kathmandu",
+    "prepublishOnly": "npm test && npm run build"
   },
   "keywords": [
     "nepali",
@@ -30,5 +34,13 @@
     "jquery": "^3.7.1",
     "jsdom": "^26.1.0",
     "terser": "^5.39.0"
-  }
+  },
+  "unpkg": "dist/js/nepali-datepicker.min.js",
+  "jsdelivr": "dist/js/nepali-datepicker.min.js",
+  "style": "dist/css/bootstrap-datepicker3.standalone.css",
+  "sideEffects": [
+    "*.css",
+    "dist/js/*.js"
+  ],
+  "author": "Suman Paudyal"
 }

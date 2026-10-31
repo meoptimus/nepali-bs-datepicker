@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nepali Datepicker — Bikram Sambat datepicker for jQuery</title>
+	<meta name="description" content="A Bikram Sambat (Nepali calendar) datepicker for jQuery, compatible with bootstrap-datepicker CSS. Live demos of every feature.">
+	<link rel="stylesheet" href="../dist/css/bootstrap-datepicker3.standalone.min.css">
+	<link rel="stylesheet" href="../dist/css/nepali-datepicker-themes.min.css">
+	<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topbar">
+	<div class="topbar-inner">
+		<a class="brand" href="index.html"><span class="brand-mark">बि</span> Nepali Datepicker</a>
+		<nav class="nav">
+			<a class="current" href="index.html">Demo</a>
+			<a href="documentation.html">Documentation</a>
+			<a href="documentation.html#cdn">CDN</a>
+			<a href="#themes">Themes</a>
+		</nav>
+		<span class="nav-spacer"></span>
+		<a class="btn" href="https://github.com/__GITHUB_USER__/nepali-bs-datepicker">GitHub</a>
+	</div>
+</header>
+
+<main class="wrap">
+	<section class="hero">
+		<div>
+			<div class="badges">
+				<span class="badge">v2.0.0</span>
+				<span class="badge">jQuery 1.12 – 4</span>
+				<span class="badge">BS 1970 – 2099</span>
+				<span class="badge">Apache-2.0</span>
+			</div>
+			<h1>Bikram Sambat datepicker for jQuery</h1>
+			<p class="lead">Every view is in the Nepali calendar, with BS ↔ AD conversion built in. It keeps
+				bootstrap-datepicker's markup, options and events, so its stylesheets and your existing code keep working.</p>
+			<div class="btn-row">
+				<a class="btn btn-primary" href="documentation.html#getting-started">Get started</a>
+				<a class="btn" href="documentation.html#cdn">Use from CDN</a>
+			</div>
+		</div>
+		<div class="hero-picker"><div id="hero"></div></div>
+	</section>
+
+	<div class="controls">
+		<label>Theme</label>
+		<div class="seg" data-theme-switch>
+			<button type="button" data-theme="" aria-pressed="true">Default</button>
+			<button type="button" data-theme="material" aria-pressed="false">Material</button>
+			<button type="button" data-theme="nepal" aria-pressed="false">Nepal</button>
+			<button type="button" data-theme="minimal" aria-pressed="false">Minimal</button>
+			<button type="button" data-theme="dark" aria-pressed="false">Dark</button>
+		</div>
+		<label>Digits</label>
+		<div class="seg" data-digits-switch>
+			<button type="button" data-digits="picker" aria-pressed="true">Picker only</button>
+			<button type="button" data-digits="true" aria-pressed="false">१ २ ३ everywhere</button>
+			<button type="button" data-digits="false" aria-pressed="false">1 2 3</button>
+		</div>
+		<span style="color:var(--muted);font-size:13px">Applies to every demo on this page</span>
+	</div>
+
+	<h2 class="section" id="basics">Basics</h2>
+	<p class="section-lead">Inputs, components and inline calendars, in Nepali or English.</p>
+	<div class="grid">
+		<div class="card">
+			<div class="card-body">
+				<h3>Input</h3>
+				<p class="desc">Defaults: Nepali UI, <code>yyyy-mm-dd</code>, today highlighted, closes on select.</p>
+				<div class="demo-markup"><input class="field" id="d-basic" placeholder="Pick a date"></div>
+				<div class="output" id="o-basic"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-basic').npdatepicker().on('changeDate', function (e) {
+					$('#o-basic').text('BS ' + e.format() + '  →  AD ' + e.date.toDateString());
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>English locale &amp; custom format</h3>
+				<p class="desc">Month names in English, any combination of format tokens.</p>
+				<div class="demo-markup"><input class="field" id="d-english" placeholder="DD, d MM yyyy"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-english').npdatepicker({
+					language: 'en',
+					format: 'DD, d MM yyyy'
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Devanagari digits</h3>
+				<p class="desc"><code>unicodeDigits: true</code> writes <code>१५ कार्तिक २०८३</code> into the input. Typing either digit style works.</p>
+				<div class="demo-markup"><input class="field" id="d-digits" placeholder="२०८३-०७-१५"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-digits').npdatepicker({ unicodeDigits: true, format: 'd MM yyyy' });
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Component with buttons</h3>
+				<p class="desc">Add-on opens the picker; <em>Today</em> selects today, <em>Clear</em> empties it.</p>
+				<div class="demo-markup"><div class="input-group date" id="d-component">
+					<input class="field" type="text">
+					<span class="input-group-addon">📅</span>
+				</div></div>
+			</div>
+			<script type="text/demo">
+				$('#d-component').npdatepicker({
+					language: 'en',
+					todayBtn: 'linked',
+					clearBtn: true,
+					showOnFocus: false
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Inline</h3>
+				<p class="desc">Use a <code>div</code> to embed the calendar. Selected date shown below.</p>
+				<div class="demo-markup"><div id="d-inline"></div></div>
+				<div class="output" id="o-inline"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-inline').npdatepicker({ language: 'en' }).on('changeDate', function (e) {
+					$('#o-inline').text(JSON.stringify(e.bsDate));
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Data API</h3>
+				<p class="desc">No JavaScript: <code>data-provide</code> plus <code>data-date-*</code> options.</p>
+				<div class="demo-markup"><input class="field" data-provide="npdatepicker" data-date-language="en"
+					data-date-format="dd/mm/yyyy" data-date-today-btn="linked" placeholder="dd/mm/yyyy"></div>
+			</div>
+		</div>
+	</div>
+
+	<h2 class="section" id="selection">Selection</h2>
+	<p class="section-lead">Ranges, multiple dates, and month or year pickers.</p>
+	<div class="grid">
+		<div class="card">
+			<div class="card-body">
+				<h3>Date range</h3>
+				<p class="desc">Two linked inputs; the range is highlighted and kept in order.</p>
+				<div class="demo-markup"><div class="input-group input-daterange" id="d-range">
+					<input class="field" type="text" placeholder="From">
+					<span class="input-group-addon">to</span>
+					<input class="field" type="text" placeholder="To">
+				</div></div>
+			</div>
+			<script type="text/demo">
+				$('#d-range').npdatepicker({ language: 'en' });
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Multiple dates</h3>
+				<p class="desc">Pick up to three dates; click again to deselect.</p>
+				<div class="demo-markup"><input class="field" id="d-multi"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-multi').npdatepicker({
+					language: 'en',
+					multidate: 3,
+					multidateSeparator: ', '
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Month picker</h3>
+				<p class="desc">Starts and stops at the months view.</p>
+				<div class="demo-markup"><input class="field" id="d-month" placeholder="MM yyyy"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-month').npdatepicker({
+					format: 'MM yyyy',
+					startView: 'months',
+					minViewMode: 'months'
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Year picker</h3>
+				<p class="desc">Decade grid of BS years.</p>
+				<div class="demo-markup"><input class="field" id="d-year" placeholder="yyyy"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-year').npdatepicker({
+					language: 'en',
+					format: 'yyyy',
+					startView: 'years',
+					minViewMode: 'years'
+				});
+			</script>
+		</div>
+	</div>
+
+	<h2 class="section" id="restrictions">Restrictions &amp; customisation</h2>
+	<p class="section-lead">Limit what can be picked and decorate individual days.</p>
+	<div class="grid">
+		<div class="card">
+			<div class="card-body">
+				<h3>Start and end date</h3>
+				<p class="desc">Only the current fiscal year (Shrawan 2083 – Asar 2084) is selectable.</p>
+				<div class="demo-markup"><input class="field" id="d-limits"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-limits').npdatepicker({
+					language: 'en',
+					startDate: '2083-04-01',
+					endDate: '2084-03-31'
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Disabled &amp; highlighted days</h3>
+				<p class="desc">Saturdays disabled, Fridays highlighted, two dates blocked.</p>
+				<div class="demo-markup"><input class="field" id="d-disabled"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-disabled').npdatepicker({
+					language: 'en',
+					daysOfWeekDisabled: [6],
+					daysOfWeekHighlighted: [5],
+					datesDisabled: ['2083-07-20', '2083-07-21']
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Holidays with <code>beforeShowDay</code></h3>
+				<p class="desc">Custom classes and tooltips per day. Hover the red days in Kartik 2083.</p>
+				<div class="demo-markup"><div id="d-holidays"></div></div>
+			</div>
+			<script type="text/demo">
+				var holidays = { '7-3': 'Tihar', '7-4': 'Bhai Tika', '7-15': 'Example day' };
+				$('#d-holidays').npdatepicker({
+					language: 'en',
+					defaultViewDate: { year: 2083, month: 6 },
+					beforeShowDay: function (date, bs) {
+						var name = holidays[bs.month + '-' + bs.day];
+						if (name && bs.year === 2083)
+							return { classes: 'holiday', tooltip: name };
+					}
+				});
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Week numbers, Monday start</h3>
+				<p class="desc"><code>calendarWeeks</code> and <code>weekStart: 1</code>.</p>
+				<div class="demo-markup"><div id="d-weeks"></div></div>
+			</div>
+			<script type="text/demo">
+				$('#d-weeks').npdatepicker({
+					language: 'en',
+					calendarWeeks: true,
+					weekStart: 1
+				});
+			</script>
+		</div>
+	</div>
+
+	<h2 class="section" id="api">Methods &amp; events</h2>
+	<p class="section-lead">Drive the picker from code and listen to what happens.</p>
+	<div class="grid">
+		<div class="card">
+			<div class="card-body">
+				<h3>Methods</h3>
+				<p class="desc">Set, read and clear the date programmatically.</p>
+				<div class="demo-markup"><input class="field" id="d-methods"></div>
+				<div class="row">
+					<button class="btn" id="m-set">setDate('2083-01-01')</button>
+					<button class="btn" id="m-ad">setDate(new Date())</button>
+					<button class="btn" id="m-get">getBsDate()</button>
+					<button class="btn" id="m-clear">clearDates()</button>
+					<button class="btn" id="m-show">show()</button>
+				</div>
+				<div class="output" id="o-methods"></div>
+			</div>
+			<script type="text/demo">
+				var $m = $('#d-methods').npdatepicker({ language: 'en', autoclose: false });
+				$('#m-set').on('click', function () { $m.npdatepicker('setDate', '2083-01-01'); });
+				$('#m-ad').on('click', function () { $m.npdatepicker('setDate', new Date()); });
+				$('#m-get').on('click', function () {
+					$('#o-methods').text(JSON.stringify($m.npdatepicker('getBsDate')));
+				});
+				$('#m-clear').on('click', function () { $m.npdatepicker('clearDates'); });
+				$('#m-show').on('click', function (e) { e.stopPropagation(); $m.npdatepicker('show'); });
+			</script>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
+				<h3>Events</h3>
+				<p class="desc">Every event fired by the picker below is logged.</p>
+				<div class="demo-markup"><input class="field" id="d-events"></div>
+				<div class="log" id="o-events"></div>
+			</div>
+			<script type="text/demo">
+				$('#d-events').npdatepicker({ language: 'en', clearBtn: true })
+					.on('show hide changeDate clearDate changeMonth changeYear changeDecade changeViewMode', function (e) {
+						var line = e.type + (e.bsDate ? '  ' + JSON.stringify(e.bsDate) : '');
+						$('#o-events').prepend($('<div>').text(line));
+					});
+			</script>
+		</div>
+	</div>
+
+	<h2 class="section" id="converter">Date converter</h2>
+	<p class="section-lead">The conversion API works without a picker: <code>$.fn.npdatepicker.calendar</code>.</p>
+	<div class="card">
+		<div class="card-body">
+			<div class="converter">
+				<div>
+					<label for="c-bs">Bikram Sambat</label>
+					<input class="field" id="c-bs" placeholder="2083-07-15">
+				</div>
+				<div class="arrow">⇄</div>
+				<div>
+					<label for="c-ad">Gregorian (AD)</label>
+					<input class="field" id="c-ad" type="date">
+				</div>
+			</div>
+			<div class="output" id="o-convert"></div>
+		</div>
+		<script type="text/demo">
+			var cal = $.fn.npdatepicker.calendar;
+			function pad(n) { return (n < 10 ? '0' : '') + n; }
+			$('#c-bs').npdatepicker({ language: 'en' }).on('changeDate', function (e) {
+				if (!e.date) return;
+				var d = cal.toAD(e.bsDate.year, e.bsDate.month, e.bsDate.day);
+				$('#c-ad').val(d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()));
+				$('#o-convert').text(d.toDateString());
+			});
+			$('#c-ad').on('change', function () {
+				var p = this.value.split('-');
+				var bs = cal.toBS(new Date(p[0], p[1] - 1, p[2]));
+				if (!bs) return $('#o-convert').text('Outside BS ' + cal.range().minYear + '–' + cal.range().maxYear);
+				$('#c-bs').npdatepicker('setDate', bs.year + '-' + pad(bs.month) + '-' + pad(bs.day));
+			});
+		</script>
+	</div>
+
+	<h2 class="section" id="themes">Themes</h2>
+	<p class="section-lead">Four ready-made themes, all built from CSS custom properties. Enable one with
+		<code>theme: 'nepal'</code>. See <a href="documentation.html#themes">how to make your own</a>.</p>
+	<div class="themes">
+		<div class="theme-tile"><h3>Default</h3><code>theme: ''</code><div class="picker-slot" data-theme=""></div></div>
+		<div class="theme-tile"><h3>Material</h3><code>theme: 'material'</code><div class="picker-slot" data-theme="material"></div></div>
+		<div class="theme-tile"><h3>Nepal</h3><code>theme: 'nepal'</code><div class="picker-slot" data-theme="nepal"></div></div>
+		<div class="theme-tile"><h3>Minimal</h3><code>theme: 'minimal'</code><div class="picker-slot" data-theme="minimal"></div></div>
+		<div class="theme-tile dark-bg"><h3>Dark</h3><code>theme: 'dark'</code><div class="picker-slot" data-theme="dark"></div></div>
+	</div>
+	<script type="text/demo">
+		$('.picker-slot').each(function () {
+			$(this).npdatepicker({ theme: $(this).data('theme'), todayBtn: true, clearBtn: true });
+		});
+		$('#hero').npdatepicker({ theme: 'nepal', todayBtn: 'linked' });
+	</script>
+</main>
+
+<footer class="site">
+	Nepali Datepicker · Apache-2.0 · derived from <a href="https://github.com/uxsolutions/bootstrap-datepicker">bootstrap-datepicker</a>
+</footer>
+
+<style>
+	/* Set the theme variable too, so the colour also wins when a theme is active */
+	.datepicker table tr td.day.holiday:not(.active) { --npdp-text: #c8102e; color: #c8102e; font-weight: 700; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="../dist/js/nepali-datepicker.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

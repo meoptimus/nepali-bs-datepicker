@@ -1,0 +1,29 @@
+/* Dark — for dark interfaces; blue accent, low-glare surfaces. */
+.npdatepicker-theme-dark {
+	--npdp-bg: #1e2230;
+	--npdp-text: #e7e9ef;
+	--npdp-muted: #6c7389;
+	--npdp-disabled: #4a5063;
+	--npdp-border: #31374a;
+	--npdp-radius: 10px;
+	--npdp-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+	--npdp-padding: 8px;
+
+	--npdp-head-bg: transparent;
+	--npdp-head-text: #ffffff;
+	--npdp-head-hover: #2b3144;
+	--npdp-dow-text: #8a91a8;
+
+	--npdp-cell-radius: 8px;
+	--npdp-cell-size: 32px;
+	--npdp-hover-bg: #2b3144;
+	--npdp-accent: #4f8cff;
+	--npdp-accent-text: #0b1220;
+	--npdp-today-bg: #2d3a5c;
+	--npdp-today-text: #9fc0ff;
+	--npdp-highlight-bg: #262b3b;
+	--npdp-highlight-text: #c3c8d6;
+	--npdp-range-bg: #26365c;
+	--npdp-range-text: #dbe6ff;
+	--npdp-link: #7aa7ff;
+}

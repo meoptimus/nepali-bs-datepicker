@@ -15,7 +15,7 @@ Changes made to the original work:
   - The plugin is registered as $.fn.npdatepicker with its own data key,
     data-api and event namespace.
   - Nepali and English Bikram Sambat locales, Devanagari digit support and
-    new options (nativeDigits, pickerClass) were added.
+    new options (unicodeDigits, theme, pickerClass) and four themes were added.
   - Fixes for timezone handling and HTML escaping of tooltips.
 
 The files in dist/css/bootstrap-datepicker*.css are unmodified copies of the
