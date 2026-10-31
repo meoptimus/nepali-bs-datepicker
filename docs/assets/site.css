@@ -91,16 +91,6 @@ pre {
 	gap: 8px;
 }
 
-.brand-mark {
-	width: 26px;
-	height: 26px;
-	border-radius: 6px;
-	background: linear-gradient(135deg, var(--accent), var(--accent-2));
-	color: #fff;
-	display: grid;
-	place-items: center;
-	font-size: 13px;
-}
 
 .nav { display: flex; gap: 16px; flex-wrap: wrap; }
 
