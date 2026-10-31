@@ -2,11 +2,102 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Nepali Datepicker</title>
-	<meta http-equiv="refresh" content="0; url=docs/">
-	<link rel="canonical" href="docs/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nepali Datepicker — Bikram Sambat (BS) date picker for jQuery</title>
+	<meta name="description" content="Open-source Nepali date picker (Bikram Sambat / BS calendar) for jQuery. नेपाली मिति पिकर: BS ↔ AD conversion, Devanagari digits, themes, compatible with bootstrap-datepicker CSS, available from npm and CDN.">
+	<meta name="keywords" content="nepali datepicker, nepali date picker, bikram sambat datepicker, BS datepicker, jquery nepali calendar, bootstrap nepali datepicker, नेपाली मिति पिकर, नेपाली पात्रो, bs to ad converter javascript">
+	<link rel="canonical" href="https://meoptimus.github.io/nepali-bs-datepicker/">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Nepali Datepicker — Bikram Sambat date picker for jQuery">
+	<meta property="og:description" content="Nepali (BS) calendar date picker for jQuery with BS ↔ AD conversion, Devanagari digits and themes. Works with bootstrap-datepicker CSS. npm and CDN.">
+	<meta property="og:url" content="https://meoptimus.github.io/nepali-bs-datepicker/">
+	<meta property="og:site_name" content="Nepali Datepicker">
+	<meta name="twitter:card" content="summary">
+	<link rel="stylesheet" href="docs/assets/site.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "SoftwareSourceCode",
+		"name": "Nepali Datepicker",
+		"alternateName": "@meoptimus/nepali-bs-datepicker",
+		"description": "Bikram Sambat (Nepali calendar) date picker for jQuery, compatible with bootstrap-datepicker stylesheets, with built-in BS to AD conversion.",
+		"url": "https://meoptimus.github.io/nepali-bs-datepicker/",
+		"codeRepository": "https://github.com/meoptimus/nepali-bs-datepicker",
+		"programmingLanguage": "JavaScript",
+		"runtimePlatform": "Web browser (jQuery 1.12–4)",
+		"license": "https://www.apache.org/licenses/LICENSE-2.0",
+		"author": { "@type": "Person", "name": "Suman Paudyal" },
+		"keywords": "nepali datepicker, bikram sambat, BS date picker, jquery plugin, bootstrap-datepicker, नेपाली मिति"
+	}
+	</script>
 </head>
 <body>
-	<a href="docs/">Nepali Datepicker documentation</a>
+<header class="topbar">
+	<div class="topbar-inner">
+		<a class="brand" href="./">Nepali Datepicker</a>
+		<nav class="nav">
+			<a href="docs/">Demo</a>
+			<a href="docs/documentation.html">Documentation</a>
+			<a href="docs/cdn-example.html">CDN example</a>
+		</nav>
+		<span class="nav-spacer"></span>
+		<a class="btn" href="https://github.com/meoptimus/nepali-bs-datepicker">GitHub</a>
+	</div>
+</header>
+
+<main class="wrap">
+	<section class="hero" style="grid-template-columns: 1fr">
+		<div>
+			<div class="badges">
+				<span class="badge">jQuery plugin</span>
+				<span class="badge">BS 1970 – 2100</span>
+				<span class="badge">Apache-2.0</span>
+				<span class="badge">npm · CDN</span>
+			</div>
+			<h1>Nepali Datepicker — a Bikram Sambat date picker for jQuery</h1>
+			<p class="lead">Pick dates in the Nepali calendar (बिक्रम संवत्) on any web page. Every view — days, months,
+				years — is in BS, with built-in BS ↔ AD conversion, Devanagari or Latin digits, four themes, date ranges and
+				keyboard navigation. It keeps the markup, options and events of bootstrap-datepicker, so its stylesheets and
+				your existing code keep working.</p>
+			<p class="lead" lang="ne">नेपाली मिति छान्नका लागि jQuery डेटपिकर। BS र AD बीच रूपान्तरण, देवनागरी अङ्क, थिमहरू,
+				र CDN बाट सिधै प्रयोग गर्न सकिने — बुटस्ट्र्याप-डेटपिकरको CSS सँग मिल्छ।</p>
+			<div class="btn-row">
+				<a class="btn btn-primary" href="docs/">Live demo</a>
+				<a class="btn" href="docs/documentation.html">Documentation</a>
+				<a class="btn" href="https://www.npmjs.com/package/@meoptimus/nepali-bs-datepicker">npm</a>
+			</div>
+		</div>
+	</section>
+
+	<h2 class="section">Use it in one minute</h2>
+	<pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;
+
+&lt;input id="dob"&gt;
+&lt;script&gt;
+  $('#dob').npdatepicker();                                   // 2083-07-14
+  $('#dob').npdatepicker({ language: 'en', format: 'd MM yyyy' }); // 14 Kartik 2083
+&lt;/script&gt;</code></pre>
+	<p>Or <code>npm install @meoptimus/nepali-bs-datepicker</code>. See the
+		<a href="docs/cdn-example.html">complete CDN example page</a>.</p>
+
+	<h2 class="section">Features</h2>
+	<ul>
+		<li>Bikram Sambat calendar from BS 1970 to 2100, verified month by month against the published Nepali calendar</li>
+		<li>Input values are BS dates in any <code>format</code> (<code>yyyy-mm-dd</code>, <code>d MM yyyy</code>, …); <code>getDate()</code> gives the AD <code>Date</code></li>
+		<li>Nepali and English locales; Devanagari digits in the calendar, 0-9 in form values</li>
+		<li>Date ranges, multiple dates, month/year pickers, disabled and highlighted days, keyboard navigation</li>
+		<li>Themes: material, nepal, minimal, dark — or style it with any bootstrap-datepicker theme</li>
+		<li>Conversion API without a picker: <code>$.fn.npdatepicker.calendar.toBS(date)</code> / <code>toAD(y, m, d)</code></li>
+		<li>Correct in every timezone; works with jQuery 1.12 to 4</li>
+	</ul>
+</main>
+
+<footer class="site">
+	Nepali Datepicker · Apache-2.0 · <a href="https://github.com/meoptimus/nepali-bs-datepicker">GitHub</a> ·
+	<a href="https://www.npmjs.com/package/@meoptimus/nepali-bs-datepicker">npm</a> ·
+	derived from <a href="https://github.com/uxsolutions/bootstrap-datepicker">bootstrap-datepicker</a>
+</footer>
 </body>
 </html>

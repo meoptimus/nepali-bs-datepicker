@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /test/
+Disallow: /scripts/
+
+Sitemap: https://meoptimus.github.io/nepali-bs-datepicker/sitemap.xml
