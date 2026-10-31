@@ -1,0 +1,90 @@
+/*!
+ * Nepali Datepicker — optional "material" theme.
+ * Load after bootstrap-datepicker3(.standalone).css and enable it with
+ *   $(el).npdatepicker({ pickerClass: 'npdatepicker-material' });
+ * Every rule is scoped to the picker, so it never restyles the rest of the page.
+ * Override the custom properties below to change the colours.
+ */
+.npdatepicker-material {
+	--npdp-accent: #3546b3;
+	--npdp-accent-text: #ffffff;
+	--npdp-muted-text: rgba(255, 255, 255, 0.7);
+	--npdp-border: rgba(0, 0, 0, 0.1);
+	--npdp-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+
+	border: 1px solid var(--npdp-border);
+	border-radius: 0;
+	box-shadow: var(--npdp-shadow);
+	padding: 0;
+}
+
+/* Upstream fixes inline pickers at 220px; the larger cells need more room */
+.npdatepicker-material.datepicker-inline {
+	display: inline-block;
+	width: auto;
+}
+
+.npdatepicker-material table thead {
+	background: var(--npdp-accent);
+	color: var(--npdp-accent-text);
+}
+
+.npdatepicker-material table thead th.dow {
+	color: var(--npdp-muted-text);
+	font-size: 12px;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.npdatepicker-material.datepicker td,
+.npdatepicker-material.datepicker th {
+	border-radius: 50%;
+	padding: 6px 10px;
+}
+
+.npdatepicker-material.datepicker thead th {
+	border-radius: 0;
+}
+
+.npdatepicker-material.datepicker .prev,
+.npdatepicker-material.datepicker .next {
+	color: var(--npdp-muted-text);
+	transition: color 0.3s;
+}
+
+.npdatepicker-material.datepicker .prev:hover,
+.npdatepicker-material.datepicker .next:hover,
+.npdatepicker-material.datepicker .datepicker-switch:hover {
+	background: transparent;
+	color: var(--npdp-accent-text);
+}
+
+.npdatepicker-material.datepicker .datepicker-switch {
+	font-size: 18px;
+	font-weight: 400;
+	transition: color 0.3s;
+}
+
+.npdatepicker-material.datepicker table tr td.active,
+.npdatepicker-material.datepicker table tr td.active:hover,
+.npdatepicker-material.datepicker table tr td span.active,
+.npdatepicker-material.datepicker table tr td span.active:hover {
+	background: var(--npdp-accent);
+	background-image: none;
+	border-color: var(--npdp-accent);
+	color: var(--npdp-accent-text);
+}
+
+.npdatepicker-material.datepicker table tr td span {
+	border-radius: 2px;
+	margin: 3%;
+	width: 27%;
+}
+
+.npdatepicker-material.datepicker-dropdown.datepicker-orient-top:before {
+	border-top-color: var(--npdp-border);
+}
+
+.npdatepicker-material.datepicker-dropdown:after {
+	border-bottom-color: var(--npdp-accent);
+}

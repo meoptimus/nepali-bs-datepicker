@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nepali Datepicker demo</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../dist/css/bootstrap-datepicker3.min.css">
+	<link rel="stylesheet" href="../dist/css/nepali-datepicker-material.css">
+	<style>
+		body { padding: 24px 16px; }
+		.demo { max-width: 720px; margin: 0 auto; }
+		.demo section { margin-bottom: 28px; }
+		code { white-space: nowrap; }
+		.output { color: #666; font-size: 13px; margin-top: 6px; }
+	</style>
+</head>
+<body>
+<div class="demo">
+	<h1>Nepali Datepicker</h1>
+	<p>Bikram Sambat datepicker that uses the bootstrap-datepicker stylesheets as-is.</p>
+
+	<section>
+		<h4>Basic input (Nepali, <code>yyyy-mm-dd</code>)</h4>
+		<input class="form-control" id="basic" placeholder="Pick a date">
+		<div class="output" id="basic-out"></div>
+	</section>
+
+	<section>
+		<h4>English month names, custom format</h4>
+		<input class="form-control" id="english" placeholder="d MM yyyy">
+	</section>
+
+	<section>
+		<h4>Devanagari digits in the input</h4>
+		<input class="form-control" id="digits">
+	</section>
+
+	<section>
+		<h4>Component with add-on, today &amp; clear buttons</h4>
+		<div class="input-group date" id="component">
+			<input type="text" class="form-control">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+		</div>
+	</section>
+
+	<section>
+		<h4>Date range</h4>
+		<div class="input-group input-daterange" id="range">
+			<input type="text" class="form-control">
+			<span class="input-group-addon">to</span>
+			<input type="text" class="form-control">
+		</div>
+	</section>
+
+	<section>
+		<h4>Month picker, limited range</h4>
+		<input class="form-control" id="months">
+	</section>
+
+	<section>
+		<h4>Inline, material theme, Saturdays disabled</h4>
+		<div id="inline"></div>
+	</section>
+
+	<section>
+		<h4>Data API</h4>
+		<input class="form-control" data-provide="npdatepicker" data-date-language="en" data-date-today-btn="linked">
+	</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="../dist/js/nepali-datepicker.js"></script>
+<script>
+	$('#basic').npdatepicker().on('changeDate', function (e) {
+		var ad = e.date ? e.date.toDateString() : '—';
+		$('#basic-out').text('BS ' + e.format() + '  →  AD ' + ad);
+	});
+	$('#english').npdatepicker({ language: 'en', format: 'd MM yyyy' });
+	$('#digits').npdatepicker({ nativeDigits: true });
+	$('#component').npdatepicker({ todayBtn: 'linked', clearBtn: true, language: 'en' });
+	$('#range').npdatepicker({ language: 'en' });
+	$('#months').npdatepicker({
+		language: 'en', format: 'MM yyyy', startView: 'months', minViewMode: 'months',
+		startDate: '2080-01-01', endDate: '2085-12-30'
+	});
+	$('#inline').npdatepicker({ pickerClass: 'npdatepicker-material', daysOfWeekDisabled: [6] });
+</script>
+</body>
+</html>

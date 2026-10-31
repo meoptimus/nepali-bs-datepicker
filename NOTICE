@@ -1,0 +1,22 @@
+Nepali Datepicker
+Copyright 2026 Suman Paudyal
+
+This product includes software derived from Datepicker for Bootstrap
+(https://github.com/uxsolutions/bootstrap-datepicker), version 1.10.1,
+licensed under the Apache License, Version 2.0.
+  Copyright 2012 Stefan Petre
+  Improvements by Andrew Rowls
+  Copyright 2013-2023 bootstrap-datepicker contributors
+
+Changes made to the original work:
+  - Calendar logic, month/year navigation, parsing and formatting were
+    rewritten to use the Bikram Sambat calendar, with a built-in
+    Bikram Sambat <-> Gregorian converter and month-length table.
+  - The plugin is registered as $.fn.npdatepicker with its own data key,
+    data-api and event namespace.
+  - Nepali and English Bikram Sambat locales, Devanagari digit support and
+    new options (nativeDigits, pickerClass) were added.
+  - Fixes for timezone handling and HTML escaping of tooltips.
+
+The files in dist/css/bootstrap-datepicker*.css are unmodified copies of the
+bootstrap-datepicker 1.10.1 stylesheets.
