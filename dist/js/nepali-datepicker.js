@@ -1,6 +1,6 @@
 /*!
  * Nepali Datepicker v2.0.0 — Bikram Sambat (BS) datepicker for jQuery
- * https://github.com/sumanbymail/nepali-datepicker
+ * https://github.com/sumanbymail/nepali-bs-datepicker
  *
  * Derived from Datepicker for Bootstrap v1.10.1
  * (https://github.com/uxsolutions/bootstrap-datepicker),

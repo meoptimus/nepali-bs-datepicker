@@ -2,6 +2,14 @@
   "name": "nepali-bs-datepicker",
   "version": "2.0.0",
   "description": "Bikram Sambat (Nepali) datepicker for jQuery, API- and CSS-compatible with bootstrap-datepicker",
+  "homepage": "https://github.com/sumanbymail/nepali-bs-datepicker#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumanbymail/nepali-bs-datepicker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sumanbymail/nepali-bs-datepicker/issues"
+  },
   "main": "dist/js/nepali-datepicker.js",
   "files": [
     "dist",
