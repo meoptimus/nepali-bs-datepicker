@@ -42,6 +42,14 @@ the shared rules and `npm run build` combines them. Copy an existing theme to st
 Serve the repository (any static server), open `docs/index.html` and paste `test/browser-check.js` into the
 console. It resolves to a summary of 72 checks covering every demo, theme and digit mode.
 
+## Releasing (maintainers)
+
+1. `npm test` (and `npm run verify-calendar -- <years>` for calendar changes).
+2. `npm run bump -- patch|minor|major` — updates package.json, the plugin header, the docs badge, the CDN links
+   and adds a CHANGELOG section; then write that CHANGELOG entry.
+3. `npm run build`, commit, tag `vX.Y.Z`, push the branch and the tag; CI must be green.
+4. `npm publish --access public` (needs npm 2FA), then create a GitHub release from the tag.
+
 ## Code style
 
 - Match the surrounding code: tabs, ES5 syntax (no build step for the plugin itself), jQuery idioms.

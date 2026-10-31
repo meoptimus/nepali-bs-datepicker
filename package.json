@@ -20,6 +20,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "bump": "node scripts/bump-version.js",
     "check-calendar": "node scripts/check-calendar.js",
     "verify-calendar": "node scripts/verify-calendar.js",
     "test": "node scripts/check-calendar.js && node --test test/calendar.test.js test/plugin.test.js",
