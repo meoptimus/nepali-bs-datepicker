@@ -19,15 +19,18 @@ unchanged** — while every view (days, months, years, decades) is in Bikram Sam
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/bootstrap-datepicker3.standalone.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/css/bootstrap-datepicker3.standalone.min.css">
 <!-- optional themes -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/nepali-datepicker-themes.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/css/nepali-datepicker-themes.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/js/nepali-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/js/nepali-datepicker.min.js"></script>
 ```
 
-The same paths work on unpkg (`https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.1/...`).
+The same paths work on unpkg (`https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.2/...`).
+
+A complete page using only CDN files: [docs/cdn-example.html](docs/cdn-example.html)
+([live](https://meoptimus.github.io/nepali-bs-datepicker/docs/cdn-example.html)).
 
 ### npm
 

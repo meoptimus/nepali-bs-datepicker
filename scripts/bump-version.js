@@ -47,6 +47,9 @@ const edits = [
 		[new RegExp('@meoptimus/nepali-bs-datepicker@' + esc(old), 'g'), '@meoptimus/nepali-bs-datepicker@' + nu],
 		[new RegExp('nepali-bs-datepicker@v' + esc(old), 'g'), 'nepali-bs-datepicker@v' + nu]
 	]],
+	['docs/cdn-example.html', [
+		[new RegExp('@meoptimus/nepali-bs-datepicker@' + esc(old), 'g'), '@meoptimus/nepali-bs-datepicker@' + nu]
+	]],
 	['docs/index.html', [
 		[new RegExp('<span class="badge">v' + esc(old) + '</span>'), '<span class="badge">v' + nu + '</span>']
 	]]

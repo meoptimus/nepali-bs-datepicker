@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ne">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Nepali Datepicker — CDN example</title>
+
+	<!-- 1. Stylesheets from the CDN: the base picker styles, then (optional) the themes -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/css/bootstrap-datepicker3.standalone.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/css/nepali-datepicker-themes.min.css">
+
+	<style>
+		body { font-family: system-ui, sans-serif; margin: 0; color: #222; }
+		main { max-width: 560px; margin: 0 auto; padding: 40px 16px; }
+		label { display: block; font-weight: 600; margin: 18px 0 6px; }
+		input { width: 100%; box-sizing: border-box; padding: 9px 10px; font-size: 16px; border: 1px solid #bbb; border-radius: 6px; }
+		.range { display: flex; gap: 8px; align-items: center; }
+		.out { margin-top: 24px; padding: 12px 14px; background: #f4f4f6; border-radius: 6px; font-family: monospace; font-size: 14px; white-space: pre-wrap; }
+	</style>
+</head>
+<body>
+<main>
+	<h1>Nepali Datepicker — CDN example</h1>
+	<p>Everything on this page is loaded from jsDelivr. View the source to copy it.</p>
+
+	<form id="form">
+		<label for="dob">जन्म मिति (default: Nepali, yyyy-mm-dd)</label>
+		<input id="dob" name="dob" placeholder="२०५०-०१-०१ वा 2050-01-01">
+
+		<label for="appt">Appointment (English names, "nepal" theme, today button)</label>
+		<input id="appt" name="appt" placeholder="d MM yyyy">
+
+		<label>Leave period (date range, "minimal" theme)</label>
+		<div class="range input-daterange" id="leave">
+			<input name="from" placeholder="From">
+			<span>to</span>
+			<input name="to" placeholder="To">
+		</div>
+	</form>
+
+	<div class="out" id="out">Pick a date…</div>
+</main>
+
+	<!-- 2. jQuery, then the plugin -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.2/dist/js/nepali-datepicker.min.js"></script>
+
+	<script>
+		// 3. Attach the picker. Values written to the inputs are BS dates with 0-9 digits.
+		$('#dob').npdatepicker({
+			startDate: '1980-01-01',          // BS
+			endDate: 'today'
+		});
+
+		$('#appt').npdatepicker({
+			language: 'en',
+			format: 'd MM yyyy',
+			theme: 'nepal',
+			todayBtn: 'linked',
+			startDate: 'today',
+			daysOfWeekDisabled: [6]           // no Saturdays
+		});
+
+		$('#leave').npdatepicker({ theme: 'minimal' });
+
+		// 4. Read the selection: e.format() = BS string, e.date = AD Date object
+		$('#dob, #appt, #leave input').on('changeDate', function (e) {
+			var bs = e.bsDate, ad = e.date;
+			$('#out').text(
+				'field: ' + (this.id || this.name) + '\n' +
+				'input value: ' + this.value + '\n' +
+				(bs ? 'BS: ' + bs.year + '-' + bs.month + '-' + bs.day + '\n' : '') +
+				(ad ? 'AD: ' + ad.toDateString() : 'cleared')
+			);
+		});
+
+		// Converting without a picker
+		var cal = $.fn.npdatepicker.calendar, today = cal.today();
+		$('#out').text('आज: ' + today.year + '-' + today.month + '-' + today.day + ' BS  (' + new Date().toDateString() + ')\nPick a date…');
+	</script>
+</body>
+</html>

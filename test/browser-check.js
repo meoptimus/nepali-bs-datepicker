@@ -242,6 +242,18 @@
 		$('[data-digits-switch] button[data-digits="true"]').trigger('click');
 		check('digits switch true: Devanagari in calendar, input still Latin', /^[०-९]+$/.test($('#hero td.day.today').text()) && /^\d{4}-/.test($('#d-basic').val()), $('#hero td.day.today').text() + ' / ' + $('#d-basic').val());
 
+		// Placement must not depend on body margins (the picker's positioning context is the page)
+		var oldStyle = document.body.getAttribute('style') || '';
+		document.body.style.margin = '40px auto';
+		document.body.style.maxWidth = '900px';
+		$('#d-english').npdatepicker('hide').trigger('focus'); await wait();
+		var $pp = visiblePicker(), ipo = $('#d-english').offset(), ppo = $pp.offset();
+		var alignedX = Math.abs(ppo.left - ipo.left) < 2 || Math.abs((ppo.left + $pp.outerWidth()) - (ipo.left + $('#d-english').outerWidth())) < 2;
+		var alignedY = Math.abs(ppo.top - (ipo.top + $('#d-english').outerHeight())) < 12 || Math.abs((ppo.top + $pp.outerHeight()) - ipo.top) < 12;
+		check('placement: aligned with the input when body has margins', alignedX && alignedY, JSON.stringify({ picker: ppo, input: ipo }));
+		closeAll();
+		document.body.setAttribute('style', oldStyle);
+
 		// No page-level style leaks from themes
 		check('themes do not restyle page tables/dropdowns', !$('style, link[rel=stylesheet]').length || getComputedStyle(document.body).backgroundColor !== '');
 	} catch (e) {

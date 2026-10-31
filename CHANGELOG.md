@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [2.0.2] - 2026-10-31
+
+### Fixed
+- The dropdown was misplaced on pages where `<body>` has margins (or a child whose margin collapses
+  through it): it was positioned relative to the body box instead of the page. The picker now measures
+  from its real offset parent.
+
+### Added
+- `docs/cdn-example.html`: a complete page that loads jQuery, the plugin and the stylesheets from the CDN.
+- `npm run bump` and `npm run verify-calendar` helper scripts for maintainers.
+
 ## [2.0.1] - 2026-10-31
 
 ### Fixed

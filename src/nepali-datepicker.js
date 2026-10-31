@@ -1,5 +1,5 @@
 /*!
- * Nepali Datepicker v2.0.1 — Bikram Sambat (BS) datepicker for jQuery
+ * Nepali Datepicker v2.0.2 — Bikram Sambat (BS) datepicker for jQuery
  * https://github.com/meoptimus/nepali-bs-datepicker
  *
  * Derived from Datepicker for Bootstrap v1.10.1
@@ -1065,7 +1065,11 @@
 				container = $(this.o.container),
 				windowWidth = container.width(),
 				scrollTop = this.o.container === 'body' ? $(document).scrollTop() : container.scrollTop(),
-				appendOffset = container.offset();
+				// The picker is absolutely positioned, so measure from its positioning
+				// context, not the container's box: a <body> with margins (or any
+				// unpositioned container) is not the containing block.
+				offsetParent = this.picker.offsetParent(),
+				appendOffset = offsetParent.length && !offsetParent.is('html') ? offsetParent.offset() : {top: 0, left: 0};
 
 			var parentsZindex = [0];
 			this.element.parents().each(function(){
@@ -2440,7 +2444,7 @@
 
 	/* DATEPICKER VERSION
 	 * =================== */
-	$.fn.npdatepicker.version = '2.0.1';
+	$.fn.npdatepicker.version = '2.0.2';
 
 	$.fn.npdatepicker.deprecated = function(msg){
 		var console = window.console;
