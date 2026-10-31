@@ -9,7 +9,7 @@ unchanged** — while every view (days, months, years, decades) is in Bikram Sam
 - Self-contained: one JavaScript file, only depends on jQuery (1.12 – 4.x)
 - Built-in BS ↔ AD conversion for BS 1970 – 2099, with an easy-to-update month table
 - Full `format` support (`d dd D DD m mm M MM yy yyyy`) for display and parsing
-- Nepali (Devanagari) and English locales; `unicodeDigits` option for १ २ ३ numerals
+- Nepali (Devanagari) and English locales; १ २ ३ numerals in the calendar while input values stay 0-9
 - Four themes (material, nepal, minimal, dark) built on CSS custom properties
 - Date ranges, multiple dates, month/year pickers, disabled dates, keyboard navigation
 - Works in every timezone
@@ -106,7 +106,7 @@ supported. Differences and additions:
 |---|---|---|
 | `format` | `'yyyy-mm-dd'` | BS tokens: `d`, `dd` day; `D`, `DD` weekday; `m`, `mm` month number; `M`, `MM` month name; `yy`, `yyyy` year. A `{toDisplay, toValue}` object also works. |
 | `language` | `'np'` | `'np'` (alias `'ne'`) or `'en'`. Add your own in `$.fn.npdatepicker.dates`. |
-| `unicodeDigits` | `'picker'` | Devanagari numerals for `np`: `'picker'` = calendar only (input keeps `1 2 3`), `true` = calendar and input, `false` = never. |
+| `unicodeDigits` | `true` | Show Devanagari numerals (१ २ ३) in the calendar for the `np` locale; `false` shows 0-9. The input value always uses 0-9. |
 | `theme` | `''` | `'material'`, `'nepal'`, `'minimal'`, `'dark'` or your own; needs the themes stylesheet. |
 | `pickerClass` | `''` | Extra class(es) for the picker element. |
 | `autoclose` | `true` | (upstream: `false`) |

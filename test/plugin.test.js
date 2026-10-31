@@ -64,17 +64,17 @@ test('assumeNearbyYear expands two-digit BS years', () => {
 	assert.strictEqual(dp.getBsDate().year, 2080);
 });
 
-test('unicodeDigits: true writes Devanagari to the input', () => {
+test('input value always uses Latin digits, even when typed in Devanagari', () => {
 	const { $input, dp } = picker({ language: 'np', format: 'yyyy-mm-dd', unicodeDigits: true });
 	$input.val('२०८३-०७-१४');
 	dp.update();
 	same(dp.getBsDate(), { year: 2083, month: 7, day: 14 });
 	dp.setValue();
-	assert.strictEqual($input.val(), '२०८३-०७-१४');
-	assert.strictEqual(dp.getFormattedDate('d MM yyyy'), '१४ कार्तिक २०८३');
+	assert.strictEqual($input.val(), '2083-07-14');
+	assert.strictEqual(dp.getFormattedDate('d MM yyyy'), '14 कार्तिक 2083');
 });
 
-test('unicodeDigits default (picker): Devanagari in the picker, Latin in the input', () => {
+test('unicodeDigits default (true): Devanagari in the picker, Latin in the input', () => {
 	const { $input, dp } = picker({ language: 'np' });
 	$input.npdatepicker('setDate', '2083-07-14');
 	assert.strictEqual($input.val(), '2083-07-14');
@@ -279,14 +279,22 @@ test('unicodeDigits: false shows Latin digits even in Nepali', () => {
 	same(dp.getBsDate(), { year: 2083, month: 7, day: 10 });
 });
 
-test('setUnicodeDigits switches digits at runtime', () => {
+test('setUnicodeDigits switches the picker digits at runtime; input stays Latin', () => {
 	const { $input, dp } = picker({ language: 'np' });
 	$input.npdatepicker('setDate', '2083-07-14');
-	$input.npdatepicker('setUnicodeDigits', true);
-	assert.strictEqual($input.val(), '२०८३-०७-१४');
 	$input.npdatepicker('setUnicodeDigits', false);
 	assert.strictEqual($input.val(), '2083-07-14');
 	assert.strictEqual(dp.picker.find('td.day.active').text(), '14');
+	$input.npdatepicker('setUnicodeDigits', true);
+	assert.strictEqual($input.val(), '2083-07-14');
+	assert.strictEqual(dp.picker.find('td.day.active').text(), '१४');
+});
+
+test('data-date-unicode-digits="false" is honoured', () => {
+	const env = setup('<input id="d" data-date-unicode-digits="false">');
+	const $input = env.$('#d').npdatepicker();
+	$input.npdatepicker('setDate', '2083-07-14');
+	assert.strictEqual($input.data('npdatepicker').picker.find('td.day.active').text(), '14');
 });
 
 test('multidate keeps the picker open unless autoclose is set', () => {

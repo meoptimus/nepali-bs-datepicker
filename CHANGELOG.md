@@ -13,8 +13,8 @@ First open-source release. A rewrite of the earlier in-house v1 picker.
 - One editable month-length table, a `npm run check-calendar` validator, and a runtime API
   (`$.fn.npdatepicker.calendar.setYear / extend / toBS / toAD / daysInMonth / …`).
 - `format` option for display and parsing: `d dd D DD m mm M MM yy yyyy`.
-- `unicodeDigits` option (`'picker'` / `true` / `false`) and `setUnicodeDigits()`: Devanagari
-  numerals in the calendar, in the input, or nowhere. Both digit styles are accepted when typing or pasting.
+- `unicodeDigits` option and `setUnicodeDigits()`: Devanagari numerals in the calendar for the Nepali
+  locale. The input value always uses 0-9; both digit styles are accepted when typing or pasting.
 - `getBsDate()`, `getBsDates()` methods and `e.bsDate` / `e.bsDates` on events.
 - Four themes — material, nepal, minimal, dark — generated from CSS custom properties; `theme` option
   and `setTheme()`; `pickerClass` option.

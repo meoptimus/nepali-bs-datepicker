@@ -48,10 +48,14 @@
 		cell($p, 1).trigger('click'); await wait();
 		check('english: DD, d MM yyyy format', /^\w+day, 1 \w+ \d{4}$/.test($('#d-english').val()), $('#d-english').val());
 
-		// Devanagari digits in the input
+		// Latin digits in the calendar; the input is always Latin
 		$('#d-digits').trigger('focus'); await wait();
-		cell(visiblePicker(), '२').trigger('click'); await wait();
-		check('unicodeDigits true: input in Devanagari', /^२ \S+ २०[०-९]{2}$/.test($('#d-digits').val()), $('#d-digits').val());
+		$p = visiblePicker();
+		check('unicodeDigits false: calendar in Latin digits', /^\d+$/.test($p.find('td.today').text()), $p.find('td.today').text());
+		cell($p, 2).trigger('click'); await wait();
+		check('unicodeDigits false: input in Latin digits', /^\d{4}-\d{2}-02$/.test($('#d-digits').val()), $('#d-digits').val());
+		$('#d-digits').val('२०८३-०७-१०'); dp('#d-digits').update(); dp('#d-digits').setValue();
+		check('typed Devanagari is converted to Latin in the input', $('#d-digits').val() === '2083-07-10', $('#d-digits').val());
 
 		// Component
 		$('#d-component .input-group-addon').trigger('click'); await wait();
@@ -234,10 +238,9 @@
 		// Digits switch
 		$('[data-digits-switch] button[data-digits="false"]').trigger('click');
 		check('digits switch false: Latin in Nepali picker', /^\d+$/.test($('#hero td.day.today').text()), $('#hero td.day.today').text());
+		check('digits switch false: input stays Latin', /^\d{4}-/.test($('#d-basic').val()), $('#d-basic').val());
 		$('[data-digits-switch] button[data-digits="true"]').trigger('click');
-		check('digits switch true: inputs in Devanagari', /^[०-९]{4}-/.test($('#d-basic').val()), $('#d-basic').val());
-		$('[data-digits-switch] button[data-digits="picker"]').trigger('click');
-		check('digits switch picker: Devanagari in calendar, Latin in input', /^[०-९]+$/.test($('#hero td.day.today').text()) && /^\d{4}-/.test($('#d-basic').val()));
+		check('digits switch true: Devanagari in calendar, input still Latin', /^[०-९]+$/.test($('#hero td.day.today').text()) && /^\d{4}-/.test($('#d-basic').val()), $('#hero td.day.today').text() + ' / ' + $('#d-basic').val());
 
 		// No page-level style leaks from themes
 		check('themes do not restyle page tables/dropdowns', !$('style, link[rel=stylesheet]').length || getComputedStyle(document.body).backgroundColor !== '');

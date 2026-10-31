@@ -154,7 +154,7 @@ import 'nepali-bs-datepicker/dist/css/themes/nepal.min.css';</code></pre>
 		</table></div>
 <pre><code>$('#d').npdatepicker({ format: 'dd/mm/yyyy' });              // 15/07/2083
 $('#d').npdatepicker({ format: 'DD, d MM yyyy', language: 'en' }); // Saturday, 15 Kartik 2083
-$('#d').npdatepicker({ format: 'd MM yyyy', unicodeDigits: true }); // १५ कार्तिक २०८३</code></pre>
+$('#d').npdatepicker({ format: 'd MM yyyy' });                     // 15 कार्तिक 2083 (np locale)</code></pre>
 		<p>For anything else pass <code>{ toDisplay: function (date, format, language) {…}, toValue: function (text, format, language) {…} }</code>,
 			exactly as in bootstrap-datepicker. Use <code>$.fn.npdatepicker.calendar</code> inside them to convert.</p>
 
@@ -164,7 +164,7 @@ $('#d').npdatepicker({ format: 'd MM yyyy', unicodeDigits: true }); // १५ �
 			<tr><th>Option</th><th>Default</th><th>Description</th></tr>
 			<tr><td>format</td><td>'yyyy-mm-dd'</td><td>BS date format, see <a href="#format">Date format</a>.</td></tr>
 			<tr><td>language</td><td>'np'</td><td><code>'np'</code> (alias <code>'ne'</code>) or <code>'en'</code>, or a locale you add.</td></tr>
-			<tr><td>unicodeDigits</td><td>'picker'</td><td>Devanagari numerals (१ २ ३) for the <code>np</code> locale. <code>'picker'</code>: in the calendar only, the input keeps <code>1 2 3</code> (safest for forms). <code>true</code>: in the calendar <b>and</b> the input value. <code>false</code>: never, even in Nepali. Typing either digit style always works.</td></tr>
+			<tr><td>unicodeDigits</td><td>true</td><td>Show Devanagari numerals (१ २ ३) in the calendar for the <code>np</code> locale; <code>false</code> shows 0-9. The input value always uses 0-9 either way.</td></tr>
 			<tr><td>theme</td><td>''</td><td>Adds <code>npdatepicker-theme-&lt;name&gt;</code>: <code>'material'</code>, <code>'nepal'</code>, <code>'minimal'</code>, <code>'dark'</code>, or your own.</td></tr>
 			<tr><td>pickerClass</td><td>''</td><td>Extra classes for the picker element.</td></tr>
 			<tr><td>autoclose</td><td>true</td><td>Close after a date is picked. Turned off automatically for <code>multidate</code> pickers unless you set it.</td></tr>
@@ -226,7 +226,7 @@ $('#d').npdatepicker({ format: 'd MM yyyy', unicodeDigits: true }); // १५ �
 			<tr><td>setDatesDisabled(arr)</td><td>Replace the disabled dates.</td></tr>
 			<tr><td>setDaysOfWeekDisabled(arr) / setDaysOfWeekHighlighted(arr)</td><td>Replace the weekday rules.</td></tr>
 			<tr><td>setTheme(name)</td><td>Switch theme; <code>''</code> removes it.</td></tr>
-			<tr><td>setUnicodeDigits(value)</td><td>Switch digits: <code>'picker'</code>, <code>true</code> or <code>false</code>.</td></tr>
+			<tr><td>setUnicodeDigits(bool)</td><td>Switch the calendar between Devanagari and Latin digits.</td></tr>
 			<tr><td>destroy()</td><td>Remove the picker and its events. (<code>remove</code> is a deprecated alias.)</td></tr>
 		</table></div>
 
@@ -271,12 +271,13 @@ D.parseDate('15/07/2083', 'dd/mm/yyyy', 'en');                          // Date 
 		<h2 id="digits">Unicode (Devanagari) digits</h2>
 		<div class="table-wrap"><table class="ref">
 			<tr><th>unicodeDigits</th><th>Calendar shows</th><th>Input value</th></tr>
-			<tr><td>'picker' (default)</td><td>१ २ ३ … २०८३</td><td>2083-07-15</td></tr>
-			<tr><td>true</td><td>१ २ ३ … २०८३</td><td>२०८३-०७-१५</td></tr>
+			<tr><td>true (default)</td><td>१ २ ३ … २०८३</td><td>2083-07-15</td></tr>
 			<tr><td>false</td><td>1 2 3 … 2083</td><td>2083-07-15</td></tr>
 		</table></div>
-		<p>Only locales with a <code>digits</code> array are affected, so the setting does nothing with <code>language: 'en'</code>.
-			Switch at runtime with <code>$(el).npdatepicker('setUnicodeDigits', true)</code>.</p>
+		<p>The input value, <code>getFormattedDate()</code> and <code>e.format()</code> always use 0-9 whatever the setting, so
+			form data stays machine-readable. Typing or pasting Devanagari digits is accepted and converted. Only locales with a
+			<code>digits</code> array are affected, so the setting does nothing with <code>language: 'en'</code>. Switch at runtime
+			with <code>$(el).npdatepicker('setUnicodeDigits', false)</code>.</p>
 
 		<h2 id="locales">Languages</h2>
 		<p>Two locales ship with the plugin: <code>np</code> (Nepali, also available as <code>ne</code>) and <code>en</code>

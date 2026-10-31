@@ -590,6 +590,8 @@
 			}
 			o.multidateSeparator = String(o.multidateSeparator);
 
+			o.unicodeDigits = o.unicodeDigits !== false && o.unicodeDigits !== 'false';
+
 			o.weekStart %= 7;
 			o.weekEnd = (o.weekStart + 6) % 7;
 
@@ -821,7 +823,7 @@
 					}
 					format = format || this.o.format;
 					var date = this.dates.get(ix);
-					return DPGlobal.formatDate(date, format, this.o.language, this.o.unicodeDigits === true);
+					return DPGlobal.formatDate(date, format, this.o.language);
 				}, this)
 			});
 		},
@@ -907,7 +909,7 @@
 		// Number in the locale's digits, for display inside the picker
 		_num: function(n){
 			var digits = dates[this.o.language].digits;
-			return digits && this.o.unicodeDigits !== false ? toNativeDigits(n, digits) : String(n);
+			return digits && this.o.unicodeDigits ? toNativeDigits(n, digits) : String(n);
 		},
 		_bsToLocal: function(year, month, day){
 			return this._utc_to_local(bsDate(year, month, day));
@@ -983,10 +985,9 @@
 			if (format === undefined)
 				format = this.o.format;
 
-			var lang = this.o.language,
-				unicodeDigits = this.o.unicodeDigits === true;
+			var lang = this.o.language;
 			return $.map(this.dates, function(d){
-				return DPGlobal.formatDate(d, format, lang, unicodeDigits);
+				return DPGlobal.formatDate(d, format, lang);
 			}).join(this.o.multidateSeparator);
 		},
 
@@ -1043,12 +1044,11 @@
 			return this;
 		},
 
-		// 'picker', true or false; see the unicodeDigits option
+		// Show the calendar in the locale's digits (true) or 0-9 (false).
+		// The input value always uses 0-9.
 		setUnicodeDigits: function(value){
 			this._process_options({unicodeDigits: value});
 			this.fill();
-			if (this.dates.length)
-				this.setValue();
 			return this;
 		},
 
@@ -1380,7 +1380,7 @@
 				endYear = end.year,
 				endMonth = end.month - 1;
 			this.picker.find('.datepicker-days .datepicker-switch')
-						.text(DPGlobal.formatDate(d, titleFormat, this.o.language, this.o.unicodeDigits !== false));
+						.text(DPGlobal.formatDate(d, titleFormat, this.o.language, this.o.unicodeDigits));
 			this.picker.find('tfoot .today')
 						.text(todaytxt)
 						.css('display', titleBtnVisible ? 'table-cell' : 'none');
@@ -2121,9 +2121,9 @@
 			rightArrow: '&#x00BB;'
 		},
 		theme: '',
-		// Locale digits (Devanagari for 'np'): 'picker' = in the calendar only,
-		// true = in the calendar and the input value, false = never
-		unicodeDigits: 'picker',
+		// Show the calendar in the locale's digits (Devanagari for 'np').
+		// The input value and formatted output always use 0-9.
+		unicodeDigits: true,
 		showWeekDays: true
 	};
 	var locale_opts = $.fn.npdatepicker.locale_opts = [
@@ -2330,7 +2330,8 @@
 			bs.day = Math.min(bs.day, NepaliCalendar.daysInMonth(bs.year, bs.month));
 			return bsDate(bs.year, bs.month, bs.day);
 		},
-		formatDate: function(date, format, language, unicodeDigits){
+		// `localeDigits` is used for text inside the picker; public output stays 0-9
+		formatDate: function(date, format, language, localeDigits){
 			if (!date)
 				return '';
 			if (typeof format === 'string')
@@ -2361,7 +2362,7 @@
 				date.push(val[format.parts[i]]);
 			}
 			date = date.join('');
-			return unicodeDigits && locale.digits ? toNativeDigits(date, locale.digits) : date;
+			return localeDigits && locale.digits ? toNativeDigits(date, locale.digits) : date;
 		},
 		headTemplate: '<thead>'+
 						'<tr>'+

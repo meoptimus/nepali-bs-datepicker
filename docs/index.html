@@ -55,8 +55,7 @@
 		</div>
 		<label>Digits</label>
 		<div class="seg" data-digits-switch>
-			<button type="button" data-digits="picker" aria-pressed="true">Picker only</button>
-			<button type="button" data-digits="true" aria-pressed="false">१ २ ३ everywhere</button>
+			<button type="button" data-digits="true" aria-pressed="true">१ २ ३</button>
 			<button type="button" data-digits="false" aria-pressed="false">1 2 3</button>
 		</div>
 		<span style="color:var(--muted);font-size:13px">Applies to every demo on this page</span>
@@ -95,12 +94,12 @@
 
 		<div class="card">
 			<div class="card-body">
-				<h3>Devanagari digits</h3>
-				<p class="desc"><code>unicodeDigits: true</code> writes <code>१५ कार्तिक २०८३</code> into the input. Typing either digit style works.</p>
-				<div class="demo-markup"><input class="field" id="d-digits" placeholder="२०८३-०७-१५"></div>
+				<h3>Latin digits in the calendar</h3>
+				<p class="desc"><code>unicodeDigits: false</code> shows 1 2 3 instead of १ २ ३. The input value is always <code>2083-07-15</code>; typing <code>२०८३-०७-१५</code> is converted.</p>
+				<div class="demo-markup"><input class="field" id="d-digits" placeholder="2083-07-15"></div>
 			</div>
 			<script type="text/demo">
-				$('#d-digits').npdatepicker({ unicodeDigits: true, format: 'd MM yyyy' });
+				$('#d-digits').npdatepicker({ unicodeDigits: false });
 			</script>
 		</div>
 

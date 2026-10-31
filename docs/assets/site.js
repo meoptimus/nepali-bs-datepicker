@@ -69,7 +69,7 @@
 			var $b = $(this), v = String($b.data('digits'));
 			$b.siblings().attr('aria-pressed', 'false');
 			$b.attr('aria-pressed', 'true');
-			setDigits(v === 'true' ? true : v === 'false' ? false : 'picker');
+			setDigits(v === 'true');
 		});
 		$('[data-theme-switch] button').on('click', function () {
 			var $b = $(this);
