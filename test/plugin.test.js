@@ -30,7 +30,7 @@ test('setDate / getDate / getBsDate with the default yyyy-mm-dd format', () => {
 	same(dp.getBsDate(), { year: 2083, month: 7, day: 14 });
 	const d = $input.npdatepicker('getDate');
 	assert.ok(isDate(d));
-	same([d.getFullYear(), d.getMonth() + 1, d.getDate()], [2026, 10, 30]);
+	same([d.getFullYear(), d.getMonth() + 1, d.getDate()], [2026, 10, 31]);
 });
 
 test('setDate accepts an AD Date object', () => {
@@ -42,7 +42,7 @@ test('setDate accepts an AD Date object', () => {
 test('format option: tokens d dd D DD m mm M MM yy yyyy', () => {
 	const { $input } = picker({ language: 'en', format: 'DD, d MM yyyy (dd/mm/yy, D M)' });
 	$input.npdatepicker('setDate', new Date(2026, 9, 31));
-	assert.strictEqual($input.val(), 'Saturday, 15 Kartik 2083 (15/07/83, Sat Kar)');
+	assert.strictEqual($input.val(), 'Saturday, 14 Kartik 2083 (14/07/83, Sat Kar)');
 });
 
 test('parses dates typed in a custom format, including month names', () => {
@@ -220,8 +220,8 @@ test('the start month itself stays selectable in the months view', () => {
 test('datesDisabled and daysOfWeekDisabled', () => {
 	const { $, dp } = picker({ language: 'en', datesDisabled: ['2083-07-12'], daysOfWeekDisabled: [6], defaultViewDate: { year: 2083, month: 6 } });
 	assert.ok(dayCell($, dp, 12).hasClass('disabled-date'), 'listed date');
-	assert.ok(dayCell($, dp, 8).hasClass('disabled'), '8 Kartik 2083 is a Saturday');
-	assert.ok(!dayCell($, dp, 14).hasClass('disabled'), '14 Kartik 2083 is a Friday');
+	assert.ok(dayCell($, dp, 7).hasClass('disabled'), '7 Kartik 2083 is a Saturday');
+	assert.ok(!dayCell($, dp, 13).hasClass('disabled'), '13 Kartik 2083 is a Friday');
 });
 
 test('beforeShowDay gets the local AD date and the BS date', () => {
@@ -229,7 +229,7 @@ test('beforeShowDay gets the local AD date and the BS date', () => {
 	picker({ language: 'en', defaultViewDate: { year: 2083, month: 6 }, beforeShowDay: (d, bs) => { seen.push([d, bs]); } });
 	const hit = seen.find(([, bs]) => bs.year === 2083 && bs.month === 7 && bs.day === 14);
 	assert.ok(hit);
-	same([hit[0].getFullYear(), hit[0].getMonth(), hit[0].getDate()], [2026, 9, 30]);
+	same([hit[0].getFullYear(), hit[0].getMonth(), hit[0].getDate()], [2026, 9, 31]);
 });
 
 test('tooltips from beforeShowDay are escaped', () => {

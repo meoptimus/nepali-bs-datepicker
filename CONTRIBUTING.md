@@ -26,7 +26,8 @@ one row per year:
 - **Adding years before 1970:** add the rows and change `epoch` to the AD date of 1 Baisakh of the new
   first year.
 
-In the pull request, link the source of the data (the official Panchanga published by the Nepal
+`npm run verify-calendar -- 2084 2085` downloads those years from hamropatro.com and reports any month that
+differs from the table. In the pull request, link the source of the data (the official Panchanga published by the Nepal
 Panchanga Nirnayak Samiti, or another authoritative calendar), then run `npm test`. The checker fails on
 malformed rows and warns about years that are not 365 or 366 days long.
 

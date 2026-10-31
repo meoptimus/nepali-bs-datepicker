@@ -62,22 +62,22 @@
 			<button type="button" role="tab">unpkg</button>
 			<button type="button" role="tab">GitHub (jsDelivr)</button>
 		</div>
-		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
 &lt;!-- optional: all themes, or one file from dist/css/themes/ --&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/nepali-datepicker-themes.min.css"&gt;
 
 &lt;script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
-		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
+		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/nepali-datepicker-themes.min.css"&gt;
 
 &lt;script src="https://unpkg.com/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
-		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meoptimus/nepali-bs-datepicker@v2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
-&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meoptimus/nepali-bs-datepicker@v2.0.0/dist/css/nepali-datepicker-themes.min.css"&gt;
+&lt;script src="https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.1/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
+		<div class="tab-panel"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meoptimus/nepali-bs-datepicker@v2.0.1/dist/css/bootstrap-datepicker3.standalone.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/meoptimus/nepali-bs-datepicker@v2.0.1/dist/css/nepali-datepicker-themes.min.css"&gt;
 
 &lt;script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/gh/meoptimus/nepali-bs-datepicker@v2.0.0/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
+&lt;script src="https://cdn.jsdelivr.net/gh/meoptimus/nepali-bs-datepicker@v2.0.1/dist/js/nepali-datepicker.min.js"&gt;&lt;/script&gt;</code></pre></div>
 
 		<h3 id="npm">npm</h3>
 <pre><code>npm install @meoptimus/nepali-bs-datepicker jquery</code></pre>
@@ -171,7 +171,7 @@ $('#d').npdatepicker({ format: 'd MM yyyy' });                     // 15 का�
 			<tr><td>todayHighlight</td><td>true</td><td>Highlight today.</td></tr>
 			<tr><td>todayBtn</td><td>false</td><td><code>true</code> shows a button that jumps to today; <code>'linked'</code> also selects it.</td></tr>
 			<tr><td>clearBtn</td><td>false</td><td>Show a button that clears the input.</td></tr>
-			<tr><td>startDate / endDate</td><td>calendar limits</td><td>Earliest / latest selectable date. Clamped to BS 1970-01-01 – 2099-12-30.</td></tr>
+			<tr><td>startDate / endDate</td><td>calendar limits</td><td>Earliest / latest selectable date. Clamped to BS 1970-01-01 – 2100-12-30.</td></tr>
 			<tr><td>datesDisabled</td><td>[]</td><td>BS dates that cannot be picked.</td></tr>
 			<tr><td>daysOfWeekDisabled</td><td>[]</td><td>Weekdays that cannot be picked, 0 = Sunday … 6 = Saturday.</td></tr>
 			<tr><td>daysOfWeekHighlighted</td><td>[]</td><td>Weekdays to highlight.</td></tr>
@@ -257,7 +257,7 @@ cal.today();                       // today in BS
 cal.isValid(2083, 4, 32);          // false
 cal.daysInMonth(2083, 3);          // 32
 cal.daysInYear(2083);              // 365
-cal.range();                       // {minYear: 1970, maxYear: 2099}
+cal.range();                       // {minYear: 1970, maxYear: 2100}
 cal.getYear(2083);                 // [31, 31, 32, 31, 31, 30, 30, 30, 29, 30, 30, 30]
 cal.setYear(2100, [...12 numbers]);  // append or correct a year
 cal.extend({2100: [...], 2101: [...]});
@@ -350,7 +350,7 @@ $('#dob').npdatepicker('setTheme', 'dark');   // switch later</code></pre>
 		<ol>
 			<li>Edit a row to correct a year, or append a row for a new year (years must be contiguous).</li>
 			<li>Run <code>npm test</code>: the table is validated and every day is round-tripped.</li>
-			<li>Run <code>npm run build</code> and release.</li>
+			<li>Run <code>npm run verify-calendar -- &lt;year&gt;</code> to compare with hamropatro.com, then <code>npm run build</code> and release.</li>
 		</ol>
 		<p>Need a fix before the next release? Patch it at runtime, before creating pickers:</p>
 <pre><code>$.fn.npdatepicker.calendar.setYear(2084, [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30]);</code></pre>

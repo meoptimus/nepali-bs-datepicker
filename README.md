@@ -7,7 +7,7 @@ the same markup, options, methods and events — so the **official bootstrap-dat
 unchanged** — while every view (days, months, years, decades) is in Bikram Sambat.
 
 - Self-contained: one JavaScript file, only depends on jQuery (1.12 – 4.x)
-- Built-in BS ↔ AD conversion for BS 1970 – 2099, with an easy-to-update month table
+- Built-in BS ↔ AD conversion for BS 1970 – 2100, with an easy-to-update month table
 - Full `format` support (`d dd D DD m mm M MM yy yyyy`) for display and parsing
 - Nepali (Devanagari) and English locales; १ २ ३ numerals in the calendar while input values stay 0-9
 - Four themes (material, nepal, minimal, dark) built on CSS custom properties
@@ -19,15 +19,15 @@ unchanged** — while every view (days, months, years, decades) is in Bikram Sam
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/bootstrap-datepicker3.standalone.min.css">
 <!-- optional themes -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/css/nepali-datepicker-themes.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.1/dist/js/nepali-datepicker.min.js"></script>
 ```
 
-The same paths work on unpkg (`https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.0/...`).
+The same paths work on unpkg (`https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.1/...`).
 
 ### npm
 
@@ -141,7 +141,7 @@ cal.toAD(2083, 7, 15);            // Date: 2026-10-31 (local midnight)
 cal.today();                      // today in BS
 cal.daysInMonth(2083, 3);         // 32
 cal.isValid(2083, 4, 32);         // false
-cal.range();                      // {minYear: 1970, maxYear: 2099}
+cal.range();                      // {minYear: 1970, maxYear: 2100}
 $.fn.npdatepicker.DPGlobal.formatDate(utcDate, 'd MM yyyy', 'np');
 ```
 
@@ -160,7 +160,10 @@ years: {
 
 1. Change or append the row for the year (years must stay contiguous).
 2. Run `npm test` — it validates the table and checks conversions.
-3. Run `npm run build` and open a pull request (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+3. Run `npm run verify-calendar -- <year>` to compare the row with hamropatro.com (optional, needs internet).
+4. Run `npm run build` and open a pull request (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+
+Rows 2000–2100 were checked month by month against hamropatro.com in Kartik 2083 (October 2026).
 
 You can also patch the data at runtime, before creating pickers, without waiting for a release:
 

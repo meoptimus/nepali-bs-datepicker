@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [2.0.1] - 2026-10-31
+
+### Fixed
+- Calendar data for BS 2000–2100 now matches the published Nepali calendar (checked month by month
+  against hamropatro.com). Years 2062, 2081, 2082, 2083, 2087 and 2097 had wrong month lengths; for
+  2082 and 2083 every date after Asoj was off by one day (eg, 14 Kartik 2083 is 31 Oct 2026, not 15 Kartik).
+- Calendar table extended to BS 2100.
+
+### Added
+- `npm run verify-calendar -- <year> [year…]` compares the table with hamropatro.com.
+
 ## [2.0.0] - 2026-10-31
 
 First open-source release. A rewrite of the earlier in-house v1 picker.

@@ -206,12 +206,12 @@
 		check('nav: decades view', $p.find('.datepicker-decades .datepicker-switch').text() === '2000-2090');
 		$p.find('.datepicker-decades .datepicker-switch').trigger('click');
 		check('nav: centuries view', $p.find('.datepicker-centuries').is(':visible'));
-		check('nav: centuries outside data disabled', $p.find('.datepicker-centuries span.century[data-year="2100"]').hasClass('disabled'));
+		check('nav: centuries outside data disabled', $p.find('.datepicker-centuries span.century[data-year="2200"]').hasClass('disabled'));
 		closeAll();
 
 		// Converter
 		$('#c-bs').npdatepicker('setDate', '2083-07-15'); await wait();
-		check('converter: BS -> AD', $('#c-ad').val() === '2026-10-31', $('#c-ad').val());
+		check('converter: BS -> AD', $('#c-ad').val() === '2026-11-01', $('#c-ad').val());
 		$('#c-ad').val('2024-04-13').trigger('change'); await wait();
 		check('converter: AD -> BS', $('#c-bs').val() === '2081-01-01', $('#c-bs').val());
 
