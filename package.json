@@ -21,7 +21,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "check-calendar": "node scripts/check-calendar.js",
-    "test": "node scripts/check-calendar.js && node --test \"test/*.test.js\"",
+    "test": "node scripts/check-calendar.js && node --test test/calendar.test.js test/plugin.test.js",
     "test:tz": "node test/tz-runner.js America/Los_Angeles && node test/tz-runner.js Asia/Kathmandu",
     "prepublishOnly": "npm test && npm run build"
   },
