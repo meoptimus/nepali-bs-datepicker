@@ -19,20 +19,20 @@ unchanged** — while every view (days, months, years, decades) is in Bikram Sam
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/bootstrap-datepicker3.standalone.min.css">
 <!-- optional themes -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/css/nepali-datepicker-themes.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@meoptimus/nepali-bs-datepicker@2.0.0/dist/js/nepali-datepicker.min.js"></script>
 ```
 
-The same paths work on unpkg (`https://unpkg.com/nepali-bs-datepicker@2.0.0/...`).
+The same paths work on unpkg (`https://unpkg.com/@meoptimus/nepali-bs-datepicker@2.0.0/...`).
 
 ### npm
 
 ```bash
-npm install nepali-bs-datepicker jquery
+npm install @meoptimus/nepali-bs-datepicker jquery
 ```
 
 ### Download

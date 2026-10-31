@@ -1,5 +1,5 @@
 {
-  "name": "nepali-bs-datepicker",
+  "name": "@meoptimus/nepali-bs-datepicker",
   "version": "2.0.0",
   "description": "Bikram Sambat (Nepali) datepicker for jQuery, API- and CSS-compatible with bootstrap-datepicker",
   "homepage": "https://github.com/meoptimus/nepali-bs-datepicker#readme",
